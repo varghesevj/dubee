@@ -1,0 +1,60 @@
+{% load static %}
+
+
+<div class="col-lg-4 responsive-column">
+    <div class="card-item blog-card blog-card-layout-2">
+      <a href="{% url 'blogs_detail' %}">
+        <div class="card-img">
+          <img src="{% static 'images/hero-bg31.jpg' %}" alt="blog-img" />
+          <!-- <div class="post-format icon-element">
+            <i class="la la-photo"></i>
+          </div> -->
+        </div>
+      </a>
+    <div class="card-body">
+        <div class="post-categories">
+          <a href="#" class="badge">Travel</a>
+          <a href="#" class="badge">lifestyle</a>
+        </div>
+        <h3 class="card-title line-height-26">
+          <a href="{% url 'blogs_detail' %}"
+            >When Traveling Avoid Expensive Hotels & Resorts</a
+          >
+        </h3>
+        <p class="card-meta">
+          <span class="post__date"> 1 January, 2020</span>
+          <span class="post-dot"></span>
+          <span class="post__time">5 Mins read</span>
+        </p>
+    </div>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <div class="author-content d-flex align-items-center">
+          <div class="author-img">
+            <img src="{% static 'images/author.png' %}" alt="testimonial image" />
+          </div>
+          <div class="author-bio">
+            <a href="#" class="author__title">Leroy Bell</a>
+          </div>
+        </div>
+        <div class="post-share">
+          <ul>
+            <li>
+              <i class="la la-share icon-element"></i>
+              <ul class="post-share-dropdown d-flex align-items-center">
+                <li>
+                  <a href="#"><i class="lab la-facebook-f"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="lab la-twitter"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="lab la-instagram"></i></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- end card-item -->
+  </div>

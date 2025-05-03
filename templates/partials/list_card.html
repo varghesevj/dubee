@@ -1,0 +1,46 @@
+{% load static %}
+<div class="col-lg-4 responsive-column">
+    <div class="card-item">
+        <div class="card-img">
+        <a href="{% url 'package_detail' category='tours' id=1 %}" class="d-block">
+            <img src="{% static 'images/hero-bg3.jpeg' %}" alt="Destination-img" />
+        </a>
+        <!-- <div
+            class="add-to-wishlist icon-element"
+            data-bs-toggle="tooltip"
+            data-placement="top"
+            title="Save for Later"
+        >
+            <i class="la la-heart-o"></i>
+        </div> -->
+        <span class="badge">Bestseller</span>
+        <span class="badge badge-ribbon">24% Save</span>
+        </div>
+        <div class="card-body">
+        <h3 class="card-title">
+            <a href="{% url 'package_detail' category='tours' id=1 %}">Hut on Blue Water Beach Tour</a>
+        </h3>
+        <p class="card-meta">124 Nevada, Las Vegas</p>
+        <div class="card-rating">
+            <span class="badge text-white">4.4/5</span>
+            <span class="review__text">Average</span>
+            <span class="rating__text">(30 Reviews)</span>
+        </div>
+        <div
+            class="card-price d-flex align-items-center justify-content-between"
+        >
+            <p>
+            <span class="price__from">From</span>
+            <span class="price__num">$100.00</span>
+            <span class="price__num before-price color-text-3"
+                >$124.00</span
+            >
+            </p>
+            <span class="tour-hour"
+            ><i class="la la-clock-o me-1"></i>7 days</span
+            >
+        </div>
+        </div>
+    </div>
+    <!-- end card-item -->
+    </div>
