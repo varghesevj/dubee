@@ -61,6 +61,7 @@
     font-weight: $font-weight-bold;
   }
   .comment__date {
+    margin-bottom: inherit;
     font-size: $font-size-14;
   }
 }

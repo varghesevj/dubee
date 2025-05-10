@@ -4438,7 +4438,8 @@ body {
       position: relative;
       top: -3px; }
   .card-item .card-body {
-    padding: 25px 30px;
+    text-align: justify;
+    padding: 25px 20px;
     min-height: auto; }
   @media (max-width: 425px) {
     .card-item .list-items-2 li span {
@@ -4458,6 +4459,8 @@ body {
       font-size: 14px; }
   .card-item .card-price {
     font-size: 15px; }
+    .card-item .card-price p {
+      margin-bottom: inherit; }
     .card-item .card-price .price__from {
       font-size: 13px; }
     .card-item .card-price .price__num {
@@ -8431,6 +8434,7 @@ body {
     color: #0d233e;
     font-weight: 700; }
   .meta-data .comment__date {
+    margin-bottom: inherit;
     font-size: 14px; }
 
 /*=============== meta-data-inner ===============*/

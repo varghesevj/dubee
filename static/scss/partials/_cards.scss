@@ -88,7 +88,8 @@
     }
   }
   .card-body {
-    padding: 25px 30px;
+    text-align: justify;
+    padding: 25px 20px;
     min-height: auto;
   }
   .list-items-2 {
@@ -118,6 +119,9 @@
     }
   }
   .card-price {
+    p{
+      margin-bottom: inherit;
+    }
     font-size: $font-size-15;
     .price__from {
       font-size: $font-size-13;
