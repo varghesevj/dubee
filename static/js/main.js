@@ -74,6 +74,8 @@ Author Email:   contact@tecydevs.com
         var select2Menu = $('.select-contain-select');
         var numberCounter = $('.counter');
         var fullWidthSlider = $('.full-width-slider');
+        var reviewBoxHeaderCarousel = $('.review-box-header-carousel')
+        var reviewBoxListCarousel = $('.review-box-list-carousel')
 
         /* ======= Preloader ======= */
         preloader.delay('500').fadeOut(2000);
@@ -716,7 +718,203 @@ Author Email:   contact@tecydevs.com
         let currentYear = new Date().getFullYear();
         $('#get-year').text(currentYear);
 
+
+        // review box carousel
+        if ($(reviewBoxHeaderCarousel).length) {
+            $(reviewBoxHeaderCarousel).owlCarousel({
+                loop:false,
+                items: 4,
+                smartSpeed: 700,
+                autoplay: false,
+                active: true,
+                margin: 30,
+                responsive : {
+                    // breakpoint from 0 up
+                    0 : {
+                        items: 2,
+                    },
+                    520:{
+                        items: 3,
+                    },
+                    // breakpoint from 991 up
+                    768 : {
+                        items: 4
+                    },
+                    // breakpoint from 992 up
+                    992 : {
+                        items: 4
+                    },
+                    // breakpoint from 1441 up
+                    1441 : {
+                        items: 4
+                    }
+                }
+            });
+        }
+
+        if ($(reviewBoxListCarousel).length) {
+            $(reviewBoxListCarousel).owlCarousel({
+                loop:true,
+                // items: 10,
+                smartSpeed: 700,
+                autoplay: false,
+                active: true,
+                margin: 30,
+                nav:true,
+                dots:false,
+                navText: [
+                    "<i class='la la-caret-left'></i>",
+                    "<i class='la la-caret-right'></i>"
+                ],
+                responsive : {
+                    // breakpoint from 0 up
+                    0 : {
+                        items: 1,
+                    },
+                    520:{
+                        items: 2,
+                    },
+                    // breakpoint from 991 up
+                    768 : {
+                        items: 2,
+                    },
+                    // breakpoint from 992 up
+                    992 : {
+                        items: 2,
+                    },
+                    // breakpoint from 1441 up
+                    1441 : {
+                        items: 3,
+                    }
+                }
+            });
+        }
+
+
+
     });
 
 })(jQuery);
 
+
+// newsletter 
+
+document.getElementById('newsletter-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+
+    fetch('/subscribe/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value 
+      },
+      body: new URLSearchParams({ 'email': email })
+    })
+    .then(response => response.json())
+    .then(data => {
+    // Set modal message
+    document.querySelector("#modalCenter .message").textContent = data.message;
+
+   
+    // Show the modal
+    const modalElement = document.getElementById("modalCenter");
+    const bootstrapModal = new bootstrap.Modal(modalElement);
+    bootstrapModal.show();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const modalElement = document.getElementById("modalCenter");
+
+  if (modalElement) {
+    modalElement.addEventListener('hidden.bs.modal', function () {
+      // Remove any lingering backdrops
+      const backdrops = document.querySelectorAll('.modal-backdrop');
+      backdrops.forEach(el => el.remove());
+
+      // Remove modal-open class to re-enable scrolling
+      document.body.classList.remove('modal-open');
+       document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    });
+  }
+});
+
+//  package booking
+
+  document.getElementById('booking-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const form = this;
+    const data = new FormData(form);
+
+    fetch('/submit-booking/', {
+        method: "POST",
+        headers: {
+            'X-CSRFToken': data.get('csrfmiddlewaretoken'),
+        },
+        body: data
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            const booking = data.booking;
+             const message = `Hi, I would like to confirm a booking:\n
+Package: ${booking.package}
+Name: ${booking.name}
+Email: ${booking.email}
+Mobile: ${booking.mobile}
+Date: ${booking.date}
+Adults: ${booking.adults}
+Children: ${booking.children}
+Infants: ${booking.infants}
+Message: ${booking.message}`;
+        
+       
+             // WhatsApp and email links
+            const whatsappLink = `https://wa.me/918289911092?text=${encodeURIComponent(message)}`;
+            const emailLink = `mailto:vasevj33@gmail.com?subject=Booking Confirmation&body=${encodeURIComponent(message)}`;
+
+            // Set links on the buttons
+            document.getElementById('whatsapp-btn').setAttribute('href', whatsappLink);
+            document.getElementById('email-btn').setAttribute('href', emailLink);
+
+
+
+// Set the message inside the modal
+        document.querySelector("#modalCenterBooking .message").textContent = data.message;
+        // Show the Bootstrap modal
+        const modalElement = document.getElementById("modalCenterBooking");
+        const bootstrapModal = new bootstrap.Modal(modalElement);
+        bootstrapModal.show();
+        
+        
+        form.reset();
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
+// close modal
+document.getElementById('email-btn').addEventListener('click', function () {
+  // Optional: delay closing the modal
+  setTimeout(() => {
+    const modalElement = document.getElementById("modalCenterBooking");
+    const bootstrapModal = bootstrap.Modal.getInstance(modalElement);
+    bootstrapModal.hide();
+  }, 1000); // 1 second delay lets the link launch properly
+});
+
+document.getElementById('whatsapp-btn').addEventListener('click', function () {
+  // Optional: delay closing the modal
+  setTimeout(() => {
+    const modalElement = document.getElementById("modalCenterBooking");
+    const bootstrapModal = bootstrap.Modal.getInstance(modalElement);
+    bootstrapModal.hide();
+  }, 1000); // 1 second delay lets the link launch properly
+});

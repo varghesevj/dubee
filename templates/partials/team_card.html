@@ -1,0 +1,38 @@
+{% load static %}
+
+<div class="col-lg-4 responsive-column">
+      <div class="card-item team-card">
+        <div class="card-img">
+          <img src="{% static 'images/author.png' %}" alt="team-img" />
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">{{team.name}}</h3>
+          <p class="card-meta">{{team.designation}}</p>
+          <p class="card-text font-size-15 pt-2">{{team.description}}</p>
+          <ul class="social-profile padding-top-20px pb-2">
+
+            {% if team.social_facebook %}
+            <li>
+              <a href="{{team.social_facebook}}"><i class="lab la-facebook-f"></i></a>
+            </li>
+            {% endif %}
+            {% if team.social_twitter %}
+            <li>
+              <a href="{{team.social_twitter}}"><i class="lab la-twitter"></i></a>
+            </li>
+            {% endif %}
+            {% if team.social_instagram %}
+            <li>
+              <a href="{{team.social_instagram}}"><i class="lab la-instagram"></i></a>
+            </li>
+            {% endif %}
+            {% if team.social_linkedin %}
+            <li>
+              <a href="{{team.social_linkedin}}"><i class="lab la-linkedin-in"></i></a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+      <!-- end card-item -->
+    </div>

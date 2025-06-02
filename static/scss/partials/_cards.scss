@@ -1080,3 +1080,31 @@
   -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
+
+.card-item {
+  display: flex;
+  flex-direction: column;
+  // height: 100%; 
+}
+
+.list-card{
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+    padding: 15px;
+  }
+}
+
+.card-description {
+  flex-grow: 1; 
+  min-height: 60px; 
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.col-lg-4{
+  .card-item{
+    height: 100%; 
+  }
+}

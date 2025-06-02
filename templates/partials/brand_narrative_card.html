@@ -1,0 +1,14 @@
+{% load static %}
+
+<div class="col-lg-4 responsive-column">
+          <div class="card-item">
+            <div class="card-img">
+              <img src="{% static 'images/hero-bg3.jpeg' %}" alt="about-img" />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title mb-2">{{brand_narrative.title}}</h3>
+              <p class="card-text">{{brand_narrative.description}} </p>
+            </div>
+          </div>
+          <!-- end card-item -->
+        </div>

@@ -1208,6 +1208,9 @@
     background-color: $theme-color-2;
     color: $white;
   }
+  .la{
+    line-height: inherit;
+  }
 }
 
 .roomBtn,
@@ -1472,5 +1475,58 @@
 .sidebar-widget{
   .d-flex p{
     margin-bottom: 0;
+  }
+}
+
+.card-item {
+  .blog-img{
+    img{
+      height: 30vh;
+      object-fit: cover;
+    }
+  }
+}
+
+
+.book-now-btn-mobile {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left:50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+/* Show only on screens smaller than 768px */
+@media (max-width: 991px) {
+  .book-now-btn-mobile {
+    display: block;
+  }
+}
+
+.gallery-carousel .card-img {
+  height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-carousel .card-img img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.package-list-card{
+  // height: 500px;
+  // overflow: hidden;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  img{
+    height: 300px;
+    width: auto;
+    object-fit: cover;
   }
 }

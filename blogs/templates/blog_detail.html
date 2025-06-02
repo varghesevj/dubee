@@ -5,54 +5,6 @@
 
 {% block content %}
 
-    <!-- ================================
-    START BREADCRUMB AREA
-================================= -->
-<section class="breadcrumb-area bread-bg-9">
-    <div class="breadcrumb-wrap">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6">
-            <div class="breadcrumb-content">
-              <div class="section-heading">
-                <h2 class="sec__title text-white">Blog Details</h2>
-              </div>
-            </div>
-            <!-- end breadcrumb-content -->
-          </div>
-          <!-- end col-lg-6 -->
-          <!-- <div class="col-lg-6">
-            <div class="breadcrumb-list text-end">
-              <ul class="list-items">
-                <li><a href="index.html">Home</a></li>
-                <li>Blog</li>
-                <li>Blog Details</li>
-              </ul>
-            </div>
-          </div> -->
-          <!-- end col-lg-6 -->
-        </div>
-        <!-- end row -->
-      </div>
-      <!-- end container -->
-    </div>
-    <!-- end breadcrumb-wrap -->
-    <div class="bread-svg-box">
-      <svg
-        class="bread-svg"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 100 10"
-        preserveAspectRatio="none"
-      >
-        <polygon points="100 0 50 10 0 0 0 10 100 10"></polygon>
-      </svg>
-    </div>
-    <!-- end bread-svg -->
-  </section>
-  <!-- end breadcrumb-area -->
-  <!-- ================================
-  END BREADCRUMB AREA
-================================= -->
 
 
 
@@ -60,54 +12,39 @@
     <!-- ================================
     START CARD AREA
 ================================= -->
-<section class="card-area section--padding">
+<section class="card-area pt-3">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div
             class="card-item blog-card blog-card-layout-2 blog-single-card mb-5"
           >
-            <div class="card-img before-none">
-              <img src="{% static 'images/hero-bg31.jpg' %}" alt="blog-img" />
+
+            <div class="card-img blog-img before-none">
+              {% if blog.cover_image %}
+              <img src="{{blog.cover_image.url}}" alt="blog-img" />
+              {% endif %}
             </div>
+
+
             <div class="card-body px-0 pb-0">
               <div class="post-categories">
                 <a href="#" class="badge">Travel</a>
                 <a href="#" class="badge">lifestyle</a>
               </div>
               <h3 class="card-title font-size-28">
-                When Traveling Avoid Expensive Hotels &amp; Resorts
+                {{blog.title}}
               </h3>
               <p class="card-meta pb-3">
-                <span class="post__author"
-                  >By <a href="#" class="text-gray">John Doe</a></span
+                <span class="post__author">By {{blog.author.name}}</span
                 >
                 <span class="post-dot"></span>
-                <span class="post__date"> 1 January, 2020</span>
-                <span class="post-dot"></span>
-                <span class="post__time"
-                  ><a href="#" class="text-gray">4 Comments</a></span
-                >
-                <span class="post-dot"></span>
-                <span class="post__time"
-                  ><a href="#" class="text-gray">202 Likes</a></span
-                >
+                <span class="post__date">{{blog.date|date:"F j, Y" }}</span>
               </p>
               <div class="section-block"></div>
-              <p class="card-text py-3">
-                Simple point-and-shoot digital cameras can give surprising
-                quality when they have the right lenses and sensors. Because
-                they are totally automatic in focus and exposure, they just
-                have to be pointed at a subject and clicked. They have limited
-                capabilities for controlling the image
-              </p>
-              <p class="card-text pb-3">
-                Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales
-                aliquet felis, quis volutpat massa imperdiet in. Praesent
-                rutrum malesuada risus, ullamcorper pretium tortor
-              </p>
+              <p class="card-text py-3">{{blog.intro}}</p>
               <div class="photo-block-gallery">
-                <h3 class="title pb-2">Travelling Highlight</h3>
+                <h3 class="title pb-2">{{blog.components.first.heading}}jj</h3>
                 <p class="card-text pb-4">
                   Quodsi sanctus pro eu, ne audire scripserit quo. Vel an enim
                   offendit salutandi, in eos quod omnes epicurei, ex veri
@@ -117,7 +54,7 @@
                   <div class="col-lg-4 responsive-column">
                     <div class="photo-block-item">
                       <a
-                        href="{% static 'images/hero-bg31.jpg' %}"
+                        href="{{blog.components.first.single_image.url}}"
                         data-fancybox="gallery"
                         data-caption="Showing image - 01"
                         data-speed="700"
@@ -189,21 +126,7 @@
                 ac consectetur ac, vestibulum at eros. Praesent commodo cursus
                 magna, vel scelerisque nisl consectetur et.
               </p>
-              <div class="blockquote-item margin-bottom-35px">
-                <blockquote class="mb-0">
-                  <p class="blockquote__text">
-                    Creativity is just connecting things. When you ask
-                    creative people how they did something, they feel a little
-                    guilty because they didn't really do it, they just saw
-                    something. It seemed obvious to them after a while. That's
-                    because they were able to connect experiences they've had
-                    and synthesize new things.
-                  </p>
-                  <h4 class="blockquote__meta">
-                    - Steve Jobs <span>Founder of Apple Inc.</span>
-                  </h4>
-                </blockquote>
-              </div>
+              
               <h3 class="title">Make better travel decisions</h3>
               <p class="card-text pt-3 pb-4">
                 Duis mollis, est non commodo luctus, nisi erat porttitor
@@ -277,31 +200,41 @@
                 <div class="author-content pt-5">
                   <div class="d-flex">
                     <div class="author-img author-img-md me-4">
-                      <a href="#"
-                        ><img src="{% static 'images/author.png' %}" alt="testimonial image"
-                      /></a>
+                      {% if blog.author.profile_image %}
+                          <img src="{{ blog.author.profile_image.url }}" alt="{{ blog.author.name }}" />
+                      {% else %}
+                          <img src="{% static 'images/no-profile.png' %}" alt="Default author image" />
+                      {% endif %}
+
                     </div>
                     <div class="author-bio">
-                      <h4 class="author__title"><a href="#">Trizen</a></h4>
-                      <span class="author__meta">About the Author</span>
-                      <p class="author__text pt-1">
-                        Donec vehicula nunc in turpis rutrum porta. Nullam
-                        lacinia ante non turpis aliquam mattis. Pellentesque
-                        luctus leo eget metus egestas egestas.
-                      </p>
+                      <h4 class="author__title">{{blog.author.name}}</h4>
+                      {% if blog.author.description %}
+                        <span class="author__meta">About the Author</span>
+                        <p class="author__text pt-1">{{blog.author.description}}</p>
+                      {% endif %}
                       <ul class="social-profile pt-3">
+
+                        {% if blog.author.social_facebook %}
                         <li>
-                          <a href="#"><i class="lab la-facebook-f"></i></a>
+                          <a href="{{blog.author.social_facebook}}"><i class="lab la-facebook-f"></i></a>
                         </li>
+                        {% endif %}
+                        {% if blog.author.social_twitter %}
                         <li>
-                          <a href="#"><i class="lab la-twitter"></i></a>
+                          <a href="{{blog.author.social_twitter}}"><i class="lab la-twitter"></i></a>
                         </li>
+                        {% endif %}
+                        {% if blog.author.social_instagram %}
                         <li>
-                          <a href="#"><i class="lab la-instagram"></i></a>
+                          <a href="{{blog.author.social_instagram}}"><i class="lab la-instagram"></i></a>
                         </li>
+                        {% endif %}
+                        {% if blog.author.social_linkedin %}
                         <li>
-                          <a href="#"><i class="lab la-linkedin-in"></i></a>
+                          <a href="{{blog.author.social_linkedin}}"><i class="lab la-linkedin-in"></i></a>
                         </li>
+                        {% endif %}
                       </ul>
                     </div>
                   </div>

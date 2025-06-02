@@ -15,10 +15,7 @@
           <div class="col-lg-12">
             <div class="breadcrumb-content">
               <div class="section-heading">
-                <h2 class="sec__title line-height-50 text-white">
-                  Dubee is Your Trusted <br />
-                  Travel Companion.
-                </h2>
+                <h2 class="sec__title line-height-50 text-white">{{aboutuscontent.cover_image_title |safe}}</h2>
               </div>
             </div>
             <!-- end breadcrumb-content -->
@@ -54,54 +51,9 @@
 <section class="info-area padding-top-100px padding-bottom-70px">
     <div class="container">
       <div class="row">
-        <div class="col-lg-4 responsive-column">
-          <div class="card-item">
-            <div class="card-img">
-              <img src="{% static 'images/hero-bg3.jpeg' %}" alt="about-img" />
-            </div>
-            <div class="card-body">
-              <h3 class="card-title mb-2">Who We Are?</h3>
-              <p class="card-text">
-                Duis cursus lectus sed dui imperdiet, id pharetra nunc
-                ullamcorper donec luctus.
-              </p>
-            </div>
-          </div>
-          <!-- end card-item -->
-        </div>
-        <!-- end col-lg-4 -->
-        <div class="col-lg-4 responsive-column">
-          <div class="card-item">
-            <div class="card-img">
-              <img src="{% static 'images/hero-bg3.jpeg' %}" alt="about-img" />
-            </div>
-            <div class="card-body">
-              <h3 class="card-title mb-2">What We Do?</h3>
-              <p class="card-text">
-                Duis cursus lectus sed dui imperdiet, id pharetra nunc
-                ullamcorper donec luctus.
-              </p>
-            </div>
-          </div>
-          <!-- end card-item -->
-        </div>
-        <!-- end col-lg-4 -->
-        <div class="col-lg-4 responsive-column">
-          <div class="card-item">
-            <div class="card-img">
-              <img src="{% static 'images/hero-bg3.jpeg' %}" alt="about-img" />
-            </div>
-            <div class="card-body">
-              <h3 class="card-title mb-2">Our Mission</h3>
-              <p class="card-text">
-                Duis cursus lectus sed dui imperdiet, id pharetra nunc
-                ullamcorper donec luctus.
-              </p>
-            </div>
-          </div>
-          <!-- end card-item -->
-        </div>
-        <!-- end col-lg-4 -->
+        {% for brand_narrative in brand_narratives %}
+        {% include 'partials/brand_narrative_card.html' with brand_narrative=brand_narrative%}
+        {% endfor %}
       </div>
       <!-- end row -->
     </div>
@@ -121,28 +73,12 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="section-heading margin-bottom-40px">
-            <h2 class="sec__title">About Us</h2>
-            <h4 class="title font-size-16 line-height-26 pt-4 pb-2">
+            <h2 class="sec__title">{{aboutuscontent.about_us_title}}</h2>
+            <!-- <h4 class="title font-size-16 line-height-26 pt-4 pb-2">
               Since 2002, TRIZEN has been revolutionising the travel industry.
               Metasearch for travel? No one was doing it. Until we did.
-            </h4>
-            <p class="sec__desc font-size-16 pb-3">
-              It is a long established fact that a reader will be distracted
-              by the readable content of a page when looking at its layout.
-              The point of using Lorem Ipsum is that it has a more-or-less
-              normal distribution of letters, as opposed to using 'Content
-              here, content here', making it look like readable English.
-            </p>
-            <p class="sec__desc font-size-16 pb-3">
-              Many desktop publishing packages and web page editors now use
-              Lorem Ipsum as their default model text, and a search for 'lorem
-              ipsum' will uncover many web sites still in their infancy.
-            </p>
-            <p class="sec__desc font-size-16">
-              Vivamus a mauris vel nunc tristique volutpat. Aenean eu faucibus
-              enim. Aenean blandit arcu lectus, in cursus elit porttitor non.
-              Curabitur risus eros,
-            </p>
+            </h4> -->
+            <p class="sec__desc font-size-16 pb-3">{{aboutuscontent.about_us_description}}</p>
           </div>
           <!-- end section-heading -->
         </div>
@@ -181,7 +117,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="section-heading text-center">
-            <h2 class="sec__title">Our Numbers Say Everything</h2>
+            <h2 class="sec__title">{{aboutuscontent.company_statistics_title}}</h2>
           </div>
           <!-- end section-heading -->
         </div>
@@ -301,123 +237,17 @@
       <div class="row align-items-center">
         <div class="col-lg-4">
           <div class="section-heading">
-            <h2 class="sec__title line-height-50">
-              What our customers are saying us?
-            </h2>
-            <p class="sec__desc padding-top-30px">
-              Morbi convallis bibendum urna ut viverra. Maecenas quis
-              consequat libero
-            </p>
+            <h2 class="sec__title line-height-50">{{aboutuscontent.testimonial_title}}</h2>
+            <p class="sec__desc padding-top-30px">{{aboutuscontent.testimonial_description}}</p>
           </div>
           <!-- end section-heading -->
         </div>
         <!-- end col-lg-4 -->
         <div class="col-lg-8">
           <div class="testimonial-carousel carousel-action">
-            <div class="testimonial-card">
-              <div class="testi-desc-box">
-                <p class="testi__desc">
-                  Excepteur sint occaecat cupidatat non proident sunt in culpa
-                  officia deserunt mollit anim laborum sint occaecat cupidatat
-                  non proident. Occaecat cupidatat non proident des.
-                </p>
-              </div>
-              <div class="author-content d-flex align-items-center">
-                <div class="author-img">
-                  <img src="{% static 'images/author.png' %}" alt="testimonial image" />
-                </div>
-                <div class="author-bio">
-                  <h4 class="author__title">Leroy Bell</h4>
-                  <span class="author__meta">United States</span>
-                  <span class="ratings d-flex align-items-center">
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <!-- end testimonial-card -->
-            <div class="testimonial-card">
-              <div class="testi-desc-box">
-                <p class="testi__desc">
-                  Excepteur sint occaecat cupidatat non proident sunt in culpa
-                  officia deserunt mollit anim laborum sint occaecat cupidatat
-                  non proident. Occaecat cupidatat non proident des.
-                </p>
-              </div>
-              <div class="author-content d-flex align-items-center">
-                <div class="author-img">
-                  <img src="{% static 'images/author.png' %}" alt="testimonial image" />
-                </div>
-                <div class="author-bio">
-                  <h4 class="author__title">Richard Pam</h4>
-                  <span class="author__meta">Canada</span>
-                  <span class="ratings d-flex align-items-center">
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <!-- end testimonial-card -->
-            <div class="testimonial-card">
-              <div class="testi-desc-box">
-                <p class="testi__desc">
-                  Excepteur sint occaecat cupidatat non proident sunt in culpa
-                  officia deserunt mollit anim laborum sint occaecat cupidatat
-                  non proident. Occaecat cupidatat non proident des.
-                </p>
-              </div>
-              <div class="author-content d-flex align-items-center">
-                <div class="author-img">
-                  <img src="{% static 'images/author.png' %}" alt="testimonial image" />
-                </div>
-                <div class="author-bio">
-                  <h4 class="author__title">Luke Jacobs</h4>
-                  <span class="author__meta">Australia</span>
-                  <span class="ratings d-flex align-items-center">
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <!-- end testimonial-card -->
-            <div class="testimonial-card">
-              <div class="testi-desc-box">
-                <p class="testi__desc">
-                  Excepteur sint occaecat cupidatat non proident sunt in culpa
-                  officia deserunt mollit anim laborum sint occaecat cupidatat
-                  non proident. Occaecat cupidatat non proident des.
-                </p>
-              </div>
-              <div class="author-content d-flex align-items-center">
-                <div class="author-img">
-                  <img src="{% static 'images/author.png' %}" alt="testimonial image" />
-                </div>
-                <div class="author-bio">
-                  <h4 class="author__title">Chulbul Panday</h4>
-                  <span class="author__meta">Italy</span>
-                  <span class="ratings d-flex align-items-center">
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                    <i class="la la-star"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <!-- end testimonial-card -->
+            {% for testimonial in testimonials %}
+              {% include 'partials/testimonial_card.html' with testimonial=testimonial %}
+            {% endfor %}
           </div>
           <!-- end testimonial-carousel -->
         </div>
@@ -436,14 +266,13 @@
     <!-- ================================
     START INFO AREA
 ================================= -->
-<section
-class="info-area padding-top-100px padding-bottom-60px text-center"
->
+{% if teams %}
+<section class="info-area padding-top-100px padding-bottom-60px text-center">
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
       <div class="section-heading">
-        <h2 class="sec__title">Our Dedicated Team</h2>
+        <h2 class="sec__title">{{aboutuscontent.team_title}}</h2>
       </div>
       <!-- end section-heading -->
     </div>
@@ -451,197 +280,15 @@ class="info-area padding-top-100px padding-bottom-60px text-center"
   </div>
   <!-- end row -->
   <div class="row padding-top-100px">
-    <div class="col-lg-4 responsive-column">
-      <div class="card-item team-card">
-        <div class="card-img">
-          <img src="{% static 'images/author.png' %}" alt="team-img" />
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">David Roberts</h3>
-          <p class="card-meta">Founder & Director</p>
-          <p class="card-text font-size-15 pt-2">
-            Ligula vehicula enenatis semper, magna lorem aliquet lacusin
-            ante dapibus dictum fugats vitaes nemo minima.
-          </p>
-          <ul class="social-profile padding-top-20px pb-2">
-            <li>
-              <a href="#"><i class="lab la-facebook-f"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-twitter"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-instagram"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-linkedin-in"></i></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- end card-item -->
-    </div>
-    <!-- end col-lg-4 -->
-    <div class="col-lg-4 responsive-column">
-      <div class="card-item team-card">
-        <div class="card-img">
-          <img src="{% static 'images/author.png' %}" alt="team-img" />
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Augusta Silva</h3>
-          <p class="card-meta">Chief Operating Officer</p>
-          <p class="card-text font-size-15 pt-2">
-            Ligula vehicula enenatis semper, magna lorem aliquet lacusin
-            ante dapibus dictum fugats vitaes nemo minima.
-          </p>
-          <ul class="social-profile padding-top-20px pb-2">
-            <li>
-              <a href="#"><i class="lab la-facebook-f"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-twitter"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-instagram"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-linkedin-in"></i></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- end card-item -->
-    </div>
-    <!-- end col-lg-4 -->
-    <div class="col-lg-4 responsive-column">
-      <div class="card-item team-card">
-        <div class="card-img">
-          <img src="{% static 'images/author.png' %}" alt="team-img" />
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Bernice Lucas</h3>
-          <p class="card-meta">Account Manager</p>
-          <p class="card-text font-size-15 pt-2">
-            Ligula vehicula enenatis semper, magna lorem aliquet lacusin
-            ante dapibus dictum fugats vitaes nemo minima.
-          </p>
-          <ul class="social-profile padding-top-20px pb-2">
-            <li>
-              <a href="#"><i class="lab la-facebook-f"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-twitter"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-instagram"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-linkedin-in"></i></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- end card-item -->
-    </div>
-    <!-- end col-lg-4 -->
-    <div class="col-lg-4 responsive-column">
-      <div class="card-item team-card">
-        <div class="card-img">
-          <img src="{% static 'images/author.png' %}" alt="team-img" />
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">David Jackson</h3>
-          <p class="card-meta">Sales Support</p>
-          <p class="card-text font-size-15 pt-2">
-            Ligula vehicula enenatis semper, magna lorem aliquet lacusin
-            ante dapibus dictum fugats vitaes nemo minima.
-          </p>
-          <ul class="social-profile padding-top-20px pb-2">
-            <li>
-              <a href="#"><i class="lab la-facebook-f"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-twitter"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-instagram"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-linkedin-in"></i></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- end card-item -->
-    </div>
-    <!-- end col-lg-4 -->
-    <div class="col-lg-4 responsive-column">
-      <div class="card-item team-card">
-        <div class="card-img">
-          <img src="{% static 'images/author.png' %}" alt="team-img" />
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Kyle Martin</h3>
-          <p class="card-meta">Order Manager</p>
-          <p class="card-text font-size-15 pt-2">
-            Ligula vehicula enenatis semper, magna lorem aliquet lacusin
-            ante dapibus dictum fugats vitaes nemo minima.
-          </p>
-          <ul class="social-profile padding-top-20px pb-2">
-            <li>
-              <a href="#"><i class="lab la-facebook-f"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-twitter"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-instagram"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-linkedin-in"></i></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- end card-item -->
-    </div>
-    <!-- end col-lg-4 -->
-    <div class="col-lg-4 responsive-column">
-      <div class="card-item team-card">
-        <div class="card-img">
-          <img src="{% static 'images/author.png' %}" alt="team-img" />
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Evan Porter</h3>
-          <p class="card-meta">Head of Design</p>
-          <p class="card-text font-size-15 pt-2">
-            Ligula vehicula enenatis semper, magna lorem aliquet lacusin
-            ante dapibus dictum fugats vitaes nemo minima.
-          </p>
-          <ul class="social-profile padding-top-20px pb-2">
-            <li>
-              <a href="#"><i class="lab la-facebook-f"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-twitter"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-instagram"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="lab la-linkedin-in"></i></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- end card-item -->
-    </div>
-    <!-- end col-lg-4 -->
+    {% for team in teams %}
+    {% include 'partials/team_card.html' with  team=team%}
+    {% endfor %}
   </div>
   <!-- end row -->
 </div>
 <!-- end container -->
 </section>
+{% endif %}
 <!-- end info-area -->
 <!-- ================================
 END INFO AREA

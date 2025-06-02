@@ -13,13 +13,8 @@
         <div class="col-lg-12">
           <div class="hero-content pb-5 hero-content-3 text-center">
             <div class="section-heading">
-              <h2 class="sec__title">
-                Open Your Eyes to the <br />
-                Hidden World
-              </h2>
-              <p class="sec__desc pt-1">
-                Book incredible things to do around the world.
-              </p>
+              <h2 class="sec__title">{{ homepage_content.hero_title }}</h2>
+              <p class="sec__desc pt-1">{{ homepage_content.hero_subtitle }}</p>
               <a href="packages.html" class="theme-btn"
                     >Explore</a>
             </div>
@@ -58,10 +53,8 @@ featured tours start
         <div class="row align-items-center featured-heading">
             <div class="col-lg-8">
               <div class="section-heading">
-                <h2 class="sec__title">Featured Tours</h2>
-                <p class="sec__desc pt-3">
-                  Morbi convallis bibendum urna ut viverra Maecenas quis
-                </p>
+                <h2 class="sec__title">{{ homepage_content.featured_tours_title }}</h2>
+                <p class="sec__desc pt-3"> {{ homepage_content.featured_tours_subtitle }} </p>
               </div>
       
               <!-- end section-heading -->
@@ -77,12 +70,11 @@ featured tours start
           </div>
 
         <div class="row">
-            {%include 'partials/list_card.html' %}
-            {%include 'partials/list_card.html' %}
-            {%include 'partials/list_card.html' %}
-            {%include 'partials/list_card.html' %}
-            {%include 'partials/list_card.html' %}
-            {%include 'partials/list_card.html' %}
+          {% for package in featured_tours %}
+            {% include 'partials/list_card.html' with package=package %}
+          {% empty %}
+            <p>No featured tours found.</p>
+          {% endfor %}
             
         </div>
     </div>
@@ -107,10 +99,8 @@ featured activities start
             <div class="row align-items-center featured-heading">
                 <div class="col-lg-8">
                   <div class="section-heading">
-                    <h2 class="sec__title">Featured Activities</h2>
-                    <p class="sec__desc pt-3">
-                      Morbi convallis bibendum urna ut viverra Maecenas quis
-                    </p>
+                    <h2 class="sec__title">{{ homepage_content.featured_activities_title }}</h2>
+                    <p class="sec__desc pt-3">{{ homepage_content.featured_activities_subtitle }}</p>
                   </div>
           
                   <!-- end section-heading -->
@@ -126,12 +116,11 @@ featured activities start
               </div>
     
             <div class="row">
-                {%include 'partials/list_card.html' %}
-                {%include 'partials/list_card.html' %}
-                {%include 'partials/list_card.html' %}
-                {%include 'partials/list_card.html' %}
-                {%include 'partials/list_card.html' %}
-                {%include 'partials/list_card.html' %}
+              {% for package in featured_activities %}
+                {% include 'partials/list_card.html' with package=package %}
+              {% empty %}
+                <p>No featured activities found.</p>
+              {% endfor %}
                 
             </div>
         </div>
@@ -157,10 +146,8 @@ Blogs start
             <div class="row align-items-center featured-heading">
                 <div class="col-lg-8">
                   <div class="section-heading blog-section">
-                    <h2 class="sec__title">User Stories</h2>
-                    <p class="sec__desc pt-3">
-                      Morbi convallis bibendum urna ut viverra Maecenas quis
-                    </p>
+                    <h2 class="sec__title">{{ homepage_content.blog_section_title }} </h2>
+                    <p class="sec__desc pt-3">{{ homepage_content.blog_section_subtitle }}</p>
                   </div>
           
                   <!-- end section-heading -->
@@ -201,7 +188,7 @@ Blogs end
       <div class="row">
         <div class="col-lg-12">
           <div class="section-heading text-center mb-0">
-            <h2 class="sec__title">Our Happy Travelers</h2>
+            <h2 class="sec__title">{{ homepage_content.testimonial_title }}</h2>
           </div>
           <!-- end section-heading -->
         </div>
@@ -211,12 +198,11 @@ Blogs end
       <div class="row padding-top-50px">
         <div class="col-lg-12">
           <div class="testimonial-carousel-2 carousel-action">
-            {%include 'partials/testimonial_card.html' %}
-            {%include 'partials/testimonial_card.html' %}
-            {%include 'partials/testimonial_card.html' %}
-            {%include 'partials/testimonial_card.html' %}
-            {%include 'partials/testimonial_card.html' %}
-            {%include 'partials/testimonial_card.html' %}
+
+            
+            {% for testimonial in testimonials %}
+              {%include 'partials/testimonial_card.html' with testimonial=testimonial %}
+            {% endfor %}
 
             
           </div>

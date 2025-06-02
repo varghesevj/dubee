@@ -65,6 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'home.context_processor.site_settings',
             ],
         },
     },
@@ -78,8 +80,12 @@ WSGI_APPLICATION = 'dubee.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dubee',
+        'USER': 'dubee_admin',
+        'PASSWORD': 'admin@dubee',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -145,3 +151,6 @@ SASS_PROCESSOR_ENABLED = True
 SASS_PROCESSOR_ROOT = BASE_DIR/ 'static'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

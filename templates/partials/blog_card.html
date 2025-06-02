@@ -1,9 +1,9 @@
 {% load static %}
 
 
-<div class="col-lg-4 responsive-column">
+<div class="col-lg-4 responsive-column mb-4">
     <div class="card-item blog-card blog-card-layout-2">
-      <a href="{% url 'blogs_detail' %}">
+      <a href="{% url 'blogs_detail' slug='trip-to-kenya' %}">
         <div class="card-img">
           <img src="{% static 'images/hero-bg31.jpg' %}" alt="blog-img" />
           <!-- <div class="post-format icon-element">
@@ -17,7 +17,7 @@
           <a href="#" class="badge">lifestyle</a>
         </div>
         <h3 class="card-title line-height-26">
-          <a href="{% url 'blogs_detail' %}"
+          <a href="{% url 'blogs_detail' slug='trip-to-kenya' %}"
             >When Traveling Avoid Expensive Hotels & Resorts</a
           >
         </h3>
