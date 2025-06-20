@@ -349,15 +349,35 @@ class="card-area section--padding padding-right-100px padding-left-100px"
             </div>
           </div>
           <!-- end filter-bar-filter -->
-          <div class="select-contain select2-container-wrapper">
+          <!-- <div class="select-contain select2-container-wrapper">
             <select class="select-contain-select">
               <option value="1">Sort by default</option>
-              <option value="2">New Tour</option>
-              <option value="3">Price: low to high</option>
-              <option value="4">Price: high to low</option>
-              <option value="5">A to Z</option>
+              <option value="2">Price: low to high</option>
+              <option value="3">Price: high to low</option>
             </select>
-          </div>
+          </div> -->
+
+          <!-- <form method="get" action="" id="sort-form">
+              <div class="select-contain select2-container-wrapper">
+                  <select class="select-contain-select" name="sort" onchange="this.form.submit()">
+                      <option value="1" {% if request.GET.sort == '1' %}selected{% endif %}>Sort by default</option>
+                      <option value="2" {% if request.GET.sort == '2' %}selected{% endif %}>Price: low to high</option>
+                      <option value="3" {% if request.GET.sort == '3' %}selected{% endif %}>Price: high to low</option>
+                  </select>
+              </div>
+          </form> -->
+
+          <form method="get" action="" id="sort-form">
+              <div class="select-contain select2-container-wrapper">
+                  <select class="select-contain-select" name="sort" onchange="this.form.submit()">
+                      <option value="1" {% if request.GET.sort == '1' %}selected{% endif %}>Sort by default</option>
+                      <option value="2" {% if request.GET.sort == '2' %}selected{% endif %}>Price: low to high</option>
+                      <option value="3" {% if request.GET.sort == '3' %}selected{% endif %}>Price: high to low</option>
+                  </select>
+              </div>
+              
+             
+          </form>
           <!-- end select-contain -->
         </div>
         <!-- end filter-bar -->
@@ -389,19 +409,21 @@ class="card-area section--padding padding-right-100px padding-left-100px"
           <ul class="pagination">
             {% if packages.has_previous %}
               <li class="page-item">
-                <a class="page-link" href="?page={{ packages.previous_page_number }}">&laquo;</a>
+                <!-- <a class="page-link" href="?page={{ packages.previous_page_number }}">&laquo;</a> -->
+                <a class="page-link" href="?page={{ packages.previous_page_number }}&sort={{ sort }}">Previous</a>
+       
               </li>
             {% endif %}
 
             {% for num in packages.paginator.page_range %}
               <li class="page-item {% if packages.number == num %}active{% endif %}">
-                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                <a class="page-link" href="?page={{ num }}&sort={{ sort }}">{{ num }}</a>
               </li>
             {% endfor %}
 
             {% if packages.has_next %}
               <li class="page-item">
-                <a class="page-link" href="?page={{ packages.next_page_number }}">&raquo;</a>
+                <a class="page-link" href="?page={{ packages.next_page_number }}&sort={{ sort }}">&raquo;</a>
               </li>
             {% endif %}
           </ul>

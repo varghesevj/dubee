@@ -9,14 +9,24 @@ from django.core.paginator import Paginator
 
 
 def paginate_packages(request, queryset, category_name,category_key):
-    paginator = Paginator(queryset, 10)  # Show 6 packages per page
-    page_number = request.GET.get('page')
+
+    sort_order = request.GET.get('sort', '1')  
+
+    if sort_order == '2':
+        queryset = queryset.order_by('price')
+    elif sort_order == '3':
+        queryset = queryset.order_by('-price')
+
+
+    paginator = Paginator(queryset, 10) 
+    page_number = request.GET.get('page', 1) 
     page_obj = paginator.get_page(page_number)
 
     return render(request, 'package_list.html', {
         'category': category_name,
-        'packages': page_obj,  # This is now a page object
+        'packages': page_obj,
         'category_key': category_key, 
+        'sort': sort_order,
     })
 
 def tours_list(request):
