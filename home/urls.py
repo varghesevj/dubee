@@ -7,5 +7,5 @@ urlpatterns = [
     # path('send_message/',send_message,name='send_message'),
     path('contactus/', contact_page, name='contact'),
     path('subscribe/', subscribe_newsletter, name='subscribe_newsletter'),
-    # path('send_message/',send_message,name='send_message')
+    path('send_message/',send_message,name='send_message')
 ]

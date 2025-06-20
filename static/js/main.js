@@ -682,7 +682,7 @@ Author Email:   contact@tecydevs.com
         function doneFunction(response) {
             submitBtn.html('Send Message');
             message.fadeIn().removeClass('alert-danger').addClass('alert-success');
-            message.text(response);
+            message.text(response.message);
             setTimeout(function () {
                 message.fadeOut();
             }, 3000);
@@ -693,25 +693,72 @@ Author Email:   contact@tecydevs.com
         function failFunction(data) {
             submitBtn.html('Send Message');
             message.fadeIn().removeClass('alert-success').addClass('alert-danger');
-            message.text(data.responseText);
+            message.text(data.responseJSON.message);
             setTimeout(function () {
                 message.fadeOut();
             }, 3000);
         }
 
+        // form.submit(function (e) {
+        //     e.preventDefault();
+        //     formData = $(this).serialize();
+        //     submitBtn.html('Sending...');
+        //     setTimeout(function () {
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: form.attr('action'),
+        //             data: formData
+        //         })
+        //             .done(doneFunction)
+        //             .fail(failFunction);
+        //     }, 2000)
+        // });
+
+        // function getCsrfToken() {
+        //     return $('input[name="csrfmiddlewaretoken"]').val();
+        // }
+
+        function getCsrfToken() {
+            const csrfToken = document.cookie.split('; ')
+                .find(row => row.startsWith('csrftoken='));
+            return csrfToken ? csrfToken.split('=')[1] : '';  // Return token value
+        }
+
         form.submit(function (e) {
-            e.preventDefault();
-            formData = $(this).serialize();
+            e.preventDefault();  // Prevent the form from submitting the traditional way
+            formData = $(this).serialize();  // Serialize form data
+            
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (!emailRegex.test($('#email').val())) {
+                // document.querySelector("#modalCenter .message").textContent = "Please enter a valid email address.";
+                // const modalElement = document.getElementById("modalCenter");
+                // const bootstrapModal = new bootstrap.Modal(modalElement);
+                // bootstrapModal.show();
+                failFunction({responseJSON: {message: 'Invalid email address. Please enter a valid email.'}});
+
+                return; 
+            }
+
+
+            // Add CSRF token to the form data
+            formData += '&csrfmiddlewaretoken=' + getCsrfToken();
+            
             submitBtn.html('Sending...');
+
             setTimeout(function () {
                 $.ajax({
                     type: 'POST',
-                    url: form.attr('action'),
-                    data: formData
-                })
-                    .done(doneFunction)
-                    .fail(failFunction);
-            }, 2000)
+                    url: '/send_message/',  // This should be the URL mapped in your urls.py
+                    data: formData,
+                    // beforeSend: function (xhr) {
+                    //     // Add CSRF token to the request headers
+                    //     xhr.setRequestHeader('X-CSRFToken', getCsrfToken());
+                    // },
+                    success: doneFunction,
+                    error: failFunction
+                });
+            }, 2000);
         });
 
         /*========= get year ========*/
@@ -801,7 +848,18 @@ Author Email:   contact@tecydevs.com
 
 document.getElementById('newsletter-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    const email = document.getElementById('email').value;
+    const email = document.getElementById('newsletter-email').value;
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!emailRegex.test(email)) {
+        document.querySelector("#modalCenter .message").textContent = "Please enter a valid email address.";
+        const modalElement = document.getElementById("modalCenter");
+        const bootstrapModal = new bootstrap.Modal(modalElement);
+        bootstrapModal.show();
+        return; 
+    }
+
 
 
 
@@ -927,23 +985,19 @@ document.getElementById('whatsapp-btn').addEventListener('click', function () {
 //         event.preventDefault();  // Prevent the default form submission
 
       
-//         // Your existing code to get form data
 //         let name = document.getElementById('name').value;
 //         let email = document.getElementById('email').value;
 //         let message = document.getElementById('message').value;
 
       
-//         // Create a FormData object
 //         let formData = new FormData();
 //         formData.append('name', name);
 //         formData.append('email', email);
 //         formData.append('message', message);
 
-//         // Get CSRF token and log it
 //         let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 //         console.log("CSRF Token:", csrfToken);
 
-//         // Send the AJAX request to the server
 //         fetch('send_message/', {
 //             method: 'POST',
 //             body: formData,

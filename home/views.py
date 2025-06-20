@@ -48,16 +48,34 @@ def subscribe_newsletter(request):
 
 def send_message(request):
     print("hittttttttttt")
+    # if request.method == "POST":
+    #     name = request.POST.get('name')
+    #     email = request.POST.get('email')
+    #     message =request.POST.get('message')
+
+    #     models.Messages.objects.create(
+    #         name = name,
+    #         email =email,
+    #         message = message
+    #     )
+        
+    #     return JsonResponse({'status': 'success', 'message': 'Message sent successfully!'})
+    # return JsonResponse({'status': 'error', 'message': 'Invalid request.'})
+
     if request.method == "POST":
         name = request.POST.get('name')
         email = request.POST.get('email')
-        message =request.POST.get('message')
+        message = request.POST.get('message')
 
-        models.Messages.objects.create(
-            name = name,
-            email =email,
-            message = message
-        )
-        
-        return JsonResponse({'status': 'success', 'message': 'Message sent successfully!'})
-    return JsonResponse({'status': 'error', 'message': 'Invalid request.'})
+        if name and email and message:
+            models.Messages.objects.create(
+                name=name,
+                email=email,
+                message=message
+            )
+
+            return JsonResponse({'status': 'success', 'message': 'Message sent successfully!'})
+        else:
+            return JsonResponse({'status': 'error', 'message': 'All fields are required.'}, status=400)
+    
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method.'}, status=405)
