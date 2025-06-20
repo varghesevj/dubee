@@ -1,13 +1,17 @@
-{% extends "base.html" %}
-
-{% block title %}Home{% endblock %}
-
+{% extends "base.html" %} 
+{% load static %}
+{% block title %}Home{% endblock %} 
 {% block content %}
-      <!-- ================================
+
+<!-- ================================
     START HERO-WRAPPER AREA
 ================================= -->
 <section class="hero-wrapper hero-wrapper3">
-  <div class="hero-box pb-0 hero-bg-3 ripple-bg">
+  <div class="hero-box pb-0 hero-bg-3 ripple-bg"
+    {% if homepage_content.hero_image %}
+        style="background-image: url('{{ homepage_content.hero_image.url }}');"
+    {% endif %}
+    >
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -15,12 +19,12 @@
             <div class="section-heading">
               <h2 class="sec__title">{{ homepage_content.hero_title }}</h2>
               <p class="sec__desc pt-1">{{ homepage_content.hero_subtitle }}</p>
-              <a href="packages.html" class="theme-btn"
-                    >Explore</a>
+              <a href="{% url 'tours_list' %}" class="theme-btn mb-3">Explore Tours</a
+              ><br />
+              <a href="{% url 'activities_list' %}" class="theme-btn">Explore Activities</a>
             </div>
           </div>
           <!-- end hero-content -->
-          
         </div>
         <!-- end col-lg-12 -->
       </div>
@@ -39,187 +43,170 @@
 END HERO-WRAPPER AREA
 ================================= -->
 
-
 <!-- ================================
 featured tours start
 ================================= -->
 
-
 <section class="featured-section">
-    
-<section class="card-area section--padding">
+  <section class="card-area section--padding">
     <div class="container">
-
-        <div class="row align-items-center featured-heading">
-            <div class="col-lg-8">
-              <div class="section-heading">
-                <h2 class="sec__title">{{ homepage_content.featured_tours_title }}</h2>
-                <p class="sec__desc pt-3"> {{ homepage_content.featured_tours_subtitle }} </p>
-              </div>
-      
-              <!-- end section-heading -->
-            </div>
-            <!-- end col-lg-8 -->
-            <div class="col-lg-4">
-              <div class="btn-box btn--box text-end">
-                <a href="{% url 'tours_list' %}" class="theme-btn"
-                  >Discover More <i class="la la-arrow-right ms-1"></i
-                ></a>
-              </div>
-            </div>
+      <div class="row align-items-center featured-heading">
+        <div class="col-lg-8">
+          <div class="section-heading">
+            <h2 class="sec__title">
+              {{ homepage_content.featured_tours_title }}
+            </h2>
+            <p class="sec__desc pt-3">
+              {{ homepage_content.featured_tours_subtitle }}
+            </p>
           </div>
 
-        <div class="row">
-          {% for package in featured_tours %}
-            {% include 'partials/list_card.html' with package=package %}
-          {% empty %}
-            <p>No featured tours found.</p>
-          {% endfor %}
-            
+          <!-- end section-heading -->
         </div>
+        <!-- end col-lg-8 -->
+        <div class="col-lg-4">
+          <div class="btn-box btn--box text-end">
+            <a href="{% url 'tours_list' %}" class="theme-btn"
+              >Discover More <i class="la la-arrow-right ms-1"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        {% for package in featured_tours %} 
+        {% include 'partials/list_card.html' with package=package %} {% empty %}
+        <p>No featured tours found.</p>
+        {% endfor %}
+      </div>
     </div>
-</section>
+  </section>
 </section>
 
 <!-- ================================
 featured tours end
 ================================= -->
 
-
 <!-- ================================
 featured activities start
 ================================= -->
 
-
 <section class="featured-section">
-    
-    <section class="card-area section--padding">
-        <div class="container">
-    
-            <div class="row align-items-center featured-heading">
-                <div class="col-lg-8">
-                  <div class="section-heading">
-                    <h2 class="sec__title">{{ homepage_content.featured_activities_title }}</h2>
-                    <p class="sec__desc pt-3">{{ homepage_content.featured_activities_subtitle }}</p>
-                  </div>
-          
-                  <!-- end section-heading -->
-                </div>
-                <!-- end col-lg-8 -->
-                <div class="col-lg-4">
-                  <div class="btn-box btn--box text-end">
-                    <a href="{% url 'activities_list' %}" class="theme-btn"
-                      >Discover More <i class="la la-arrow-right ms-1"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
-    
-            <div class="row">
-              {% for package in featured_activities %}
-                {% include 'partials/list_card.html' with package=package %}
-              {% empty %}
-                <p>No featured activities found.</p>
-              {% endfor %}
-                
-            </div>
+  <section class="card-area section--padding">
+    <div class="container">
+      <div class="row align-items-center featured-heading">
+        <div class="col-lg-8">
+          <div class="section-heading">
+            <h2 class="sec__title">
+              {{ homepage_content.featured_activities_title }}
+            </h2>
+            <p class="sec__desc pt-3">
+              {{ homepage_content.featured_activities_subtitle }}
+            </p>
+          </div>
+
+          <!-- end section-heading -->
         </div>
-    </section>
-    </section>
-    
+        <!-- end col-lg-8 -->
+        <div class="col-lg-4">
+          <div class="btn-box btn--box text-end">
+            <a href="{% url 'activities_list' %}" class="theme-btn"
+              >Discover More <i class="la la-arrow-right ms-1"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        {% for package in featured_activities %} 
+        {% include 'partials/list_card.html' with package=package %} {% empty %}
+        <p>No featured activities found.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</section>
+
 <!-- ================================
 featured activities end
 ================================= -->
-
-
 
 <!-- ================================
 Blogs start
 ================================= -->
 
-
 <section class="featured-section">
-    
-    <section class="blog-area  section--padding">
-        <div class="container">
-    
-            <div class="row align-items-center featured-heading">
-                <div class="col-lg-8">
-                  <div class="section-heading blog-section">
-                    <h2 class="sec__title">{{ homepage_content.blog_section_title }} </h2>
-                    <p class="sec__desc pt-3">{{ homepage_content.blog_section_subtitle }}</p>
-                  </div>
-          
-                  <!-- end section-heading -->
-                </div>
-                <!-- end col-lg-8 -->
-                <div class="col-lg-4">
-                  <div class="btn-box btn--box text-end">
-                    <a href="tour-grid.html" class="theme-btn"
-                      >Discover More <i class="la la-arrow-right ms-1"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
-    
-            
-            <div class="row padding-top-50px">
-                {%include 'partials/blog_card.html' %}
-                {%include 'partials/blog_card.html' %}
-                {%include 'partials/blog_card.html' %}
-                
-             </div>   
-            
+  <section class="blog-area section--padding">
+    <div class="container">
+      <div class="row align-items-center featured-heading">
+        <div class="col-lg-8">
+          <div class="section-heading blog-section">
+            <h2 class="sec__title">
+              {{ homepage_content.blog_section_title }}
+            </h2>
+            <p class="sec__desc pt-3">
+              {{ homepage_content.blog_section_subtitle }}
+            </p>
+          </div>
+
+          <!-- end section-heading -->
         </div>
-    </section>
-    </section>
-    
+        <!-- end col-lg-8 -->
+        <div class="col-lg-4">
+          <div class="btn-box btn--box text-end">
+            <a href="tour-grid.html" class="theme-btn"
+              >Discover More <i class="la la-arrow-right ms-1"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row padding-top-50px">
+        {%include 'partials/blog_card.html' %} 
+        {%include 'partials/blog_card.html' %} 
+        {%include 'partials/blog_card.html' %}
+      </div>
+    </div>
+  </section>
+</section>
+
 <!-- ================================
 Blogs end
 ================================= -->
 
-
-
-   <!-- ================================
+<!-- ================================
        START TESTIMONIAL AREA
 ================================= -->
 <section class="testimonial-area section-padding">
-    <div class="container">          
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="section-heading text-center mb-0">
-            <h2 class="sec__title">{{ homepage_content.testimonial_title }}</h2>
-          </div>
-          <!-- end section-heading -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-heading text-center mb-0">
+          <h2 class="sec__title">{{ homepage_content.testimonial_title }}</h2>
         </div>
-        <!-- end col-lg-12 -->
+        <!-- end section-heading -->
       </div>
-      <!-- end row  -->
-      <div class="row padding-top-50px">
-        <div class="col-lg-12">
-          <div class="testimonial-carousel-2 carousel-action">
-
-            
-            {% for testimonial in testimonials %}
-              {%include 'partials/testimonial_card.html' with testimonial=testimonial %}
-            {% endfor %}
-
-            
-          </div>
-          <!-- end testimonial-carousel -->
-        </div>
-        <!-- end col-lg-12 -->
-      </div>
-      <!-- end row -->
+      <!-- end col-lg-12 -->
     </div>
-    <!-- end container -->
-  </section>
-  <!-- end testimonial-area -->
-  <!-- ================================
+    <!-- end row  -->
+    <div class="row padding-top-50px">
+      <div class="col-lg-12">
+        <div class="testimonial-carousel-2 carousel-action">
+          {% for testimonial in testimonials %} 
+          {%include 'partials/testimonial_card.html' with testimonial=testimonial %}
+          {% endfor %}
+        </div>
+        <!-- end testimonial-carousel -->
+      </div>
+      <!-- end col-lg-12 -->
+    </div>
+    <!-- end row -->
+  </div>
+  <!-- end container -->
+</section>
+<!-- end testimonial-area -->
+<!-- ================================
      end TESTIMONIAL AREA
 ================================= -->
 
-
-
 {% endblock %}
-

@@ -14,6 +14,18 @@ class SiteSettingsAdmin(admin.ModelAdmin):
     
     list_display = ('business_name', 'email', 'phone' )
 
+@admin.register(models.BreadImages)
+class BreadImagesAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        return not models.BreadImages.objects.exists()
+    
+
+    def has_delete_permission(self, request, obj = None):
+        return False
+    
+    def name(self,obj):
+        return "Breadcrumb Image"
+    
 @admin.register(models.HomePageContent)
 class HomePageContentAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
@@ -67,3 +79,20 @@ class TeamAdmin(admin.ModelAdmin):
 @admin.register(models.NewsletterSubscriber)
 class NewsletterSubscriberAdmin(admin.ModelAdmin):
     list_display=('email','subscribed_at')
+
+
+@admin.register(models.Miscellaneous)
+class MiscellaneousAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        return not models.Miscellaneous.objects.exists()
+    
+
+    def has_delete_permission(self, request, obj = None):
+        return False
+    
+    def name(self,obj):
+        return "Miscellaneous"
+
+@admin.register(models.Messages)
+class MessagesAdmin(admin.ModelAdmin):
+    list_display=('name','email','created_at')

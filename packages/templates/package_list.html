@@ -14,9 +14,16 @@
     <!-- ================================
     START BREADCRUMB AREA
 ================================= -->
-<section class="breadcrumb-area bread-bg">
+{% if category_key == 'tour' and  breadcrumb_images.tours_bread_image  %}
+  <section class="breadcrumb-area" style="background-image: url('{{ breadcrumb_images.tours_bread_image.url }}');">
+{% elif category_key == 'activity' and breadcrumb_images.activities_bread_image %}
+  <section class="breadcrumb-area" style="background-image: url('{{ breadcrumb_images.activities_bread_image.url }}');">
+{% else %}
+  <section class="breadcrumb-area bread-bg">
+{% endif %}
+<!-- <section class="breadcrumb-area bread-bg"> -->
     <div class="breadcrumb-wrap padding-right-100px padding-left-100px">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-6">
             <div class="breadcrumb-content">
@@ -58,7 +65,7 @@
 <section
 class="card-area section--padding padding-right-100px padding-left-100px"
 >
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-lg-12">
       <div class="filter-wrap margin-bottom-30px">
@@ -93,15 +100,15 @@ class="card-area section--padding padding-right-100px padding-left-100px"
         </div>
         <!-- end filter-top -->
         <div
-          class="filter-bar d-flex align-items-center justify-content-between"
+          class="filter-bar d-flex align-items-center justify-content-between "
         >
           <div
-            class="filter-bar-filter d-flex flex-wrap align-items-center"
+            class="filter-bar-filter d-flex flex-wrap  flex-column flex-sm-row  "
           >
-            <div class="filter-option">
+            <div class="filter-option mt-1">
               <h3 class="title font-size-16">Filter by:</h3>
             </div>
-            <div class="filter-option">
+            <div class="filter-option mt-1">
               <div class="dropdown dropdown-contain">
                 <a
                   class="dropdown-toggle dropdown-btn dropdown--btn"
@@ -143,7 +150,7 @@ class="card-area section--padding padding-right-100px padding-left-100px"
               </div>
               <!-- end dropdown -->
             </div>
-            <div class="filter-option">
+            <div class="filter-option mt-1">
               <div class="dropdown dropdown-contain">
                 <a
                   class="dropdown-toggle dropdown-btn dropdown--btn"
@@ -152,7 +159,7 @@ class="card-area section--padding padding-right-100px padding-left-100px"
                   data-bs-toggle="dropdown"
                   data-bs-auto-close="outside"
                 >
-                  Review Score
+                  Group Size
                 </a>
                 <div class="dropdown-menu dropdown-menu-wrap">
                   <div class="dropdown-item">
@@ -260,7 +267,7 @@ class="card-area section--padding padding-right-100px padding-left-100px"
               </div>
               <!-- end dropdown -->
             </div>
-            <div class="filter-option">
+            <div class="filter-option mt-1">
               <div class="dropdown dropdown-contain">
                 <a
                   class="dropdown-toggle dropdown-btn dropdown--btn"
@@ -269,7 +276,7 @@ class="card-area section--padding padding-right-100px padding-left-100px"
                   data-bs-toggle="dropdown"
                   data-bs-auto-close="outside"
                 >
-                  Categories
+                  Min Age
                 </a>
                 <div class="dropdown-menu dropdown-menu-wrap">
                   <div class="dropdown-item">

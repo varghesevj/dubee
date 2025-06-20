@@ -8,14 +8,15 @@ from django.core.paginator import Paginator
 #     return render(request, 'packagelist.html')
 
 
-def paginate_packages(request, queryset, category_name):
-    paginator = Paginator(queryset, 3)  # Show 6 packages per page
+def paginate_packages(request, queryset, category_name,category_key):
+    paginator = Paginator(queryset, 10)  # Show 6 packages per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     return render(request, 'package_list.html', {
         'category': category_name,
         'packages': page_obj,  # This is now a page object
+        'category_key': category_key, 
     })
 
 def tours_list(request):
@@ -24,7 +25,7 @@ def tours_list(request):
     #     'category': 'Tours',
     #     'packages' : tours,
     # })
-    return paginate_packages(request, tours, 'Tours')
+    return paginate_packages(request, tours, 'Tours','tour')
 
 def activities_list(request):
     activities = Package.objects.filter(category='activity')
@@ -32,7 +33,7 @@ def activities_list(request):
     #     'category': 'Activities',
     #     'packages': activities,
     # })
-    return paginate_packages(request, activities, 'Activities')
+    return paginate_packages(request, activities, 'Activities','activity')
 
 def package_detail(request, category, slug):
     package = get_object_or_404(Package, slug=slug, category=category.lower())

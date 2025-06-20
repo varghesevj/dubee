@@ -33,11 +33,11 @@
 
     <!-- ================================
     START BREADCRUMB AREA
-================================= -->
+================================= --> 
 {% if package.featured_image %}
 <section class="breadcrumb-area  py-0" style="background-image: url('{{ package.featured_image.url }}');">
 {% else %}
-<section class="breadcrumb-area bread-bg-2 py-0">
+<section class="breadcrumb-area bread-bg-package py-0">
 {% endif %}
     
     <div class="breadcrumb-wrap">
@@ -484,23 +484,21 @@
                 <div class="section-block"></div>
               </div>
               <!-- end faq -->
+               {% if package.map_embed_code %}
               <div id="location-map" class="page-scroll">
                 <div
                   class="single-content-item padding-top-40px padding-bottom-40px"
                 >
                   <h3 class="title font-size-20">Location</h3>
                   <div class="gmaps padding-top-30px">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3220582.101712651!2d111.72032468736893!3d37.974802328116944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e4!4m5!1s0x3676dd556edbe6e9%3A0x12fdd98581592320!2sLinfen%2C%20Shanxi%2C%20China!3m2!1d36.088004999999995!2d111.518975!4m5!1s0x35f05296e7142cb9%3A0xb9625620af0fa98a!2sBeijing%2C%20China!3m2!1d39.904199899999995!2d116.40739629999999!5e0!3m2!1sen!2sin!4v1589443024919!5m2!1sen!2sin"
-                      allowfullscreen=""
-                      aria-hidden="false"
-                      tabindex="0"
-                    ></iframe>
+
+                    {{ package.map_embed_code|safe }}
                   </div>
                 </div>
                 <!-- end single-content-item -->
                 <div class="section-block"></div>
               </div>
+              {% endif %}
               <!-- end location-map -->
              
               <!--  reviews -->
@@ -519,9 +517,9 @@
                   <div class="sidebar-book-title-wrap mb-3">
                     <h3>Bestseller</h3>
                     <p>
-                      <span class="text-form">From</span
-                      ><span class="text-value ms-2 me-1">${{package.price}}</span>
-                      <span class="before-price">${{package.old_price}}</span>
+                      <span class="text-form me-2">From</span
+                      ><span class="text-value ms-2 me-1">{{site_settings.currency}} {{package.price}}</span>
+                      <span class="before-price">{{site_settings.currency}} {{package.old_price}}</span>
                     </p>
                   </div>
                 </div>

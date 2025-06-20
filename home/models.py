@@ -2,12 +2,28 @@ from django.db import models
 
 # Create your models here.
 
-class SiteSettings(models.Model):
+class BreadImages(models.Model):
+    tours_bread_image = models.ImageField(upload_to='bread-images',blank=True,null=True)
+    activities_bread_image = models.ImageField(upload_to='bread-images',blank=True,null=True)
+    blogs_bread_image = models.ImageField(upload_to='bread-images',blank=True,null=True)
+    about_us_bread_image = models.ImageField(upload_to='bread-images',blank=True,null=True)
+    contact_us_bread_image = models.ImageField(upload_to='bread-images',blank=True,null=True)
+    
+    def __str__(self):
+        return "Breadcrumb Images"
 
+    class Meta:
+        verbose_name = "Breadcrumb Images"
+        verbose_name_plural = "Breadcrumb Images"
+
+class SiteSettings(models.Model):
+    logo = models.ImageField(upload_to='logo/')
     business_name = models.CharField(max_length=255)
     address = models.TextField()
     email = models.EmailField()
     phone = models.CharField(max_length=20)
+
+    currency = models.CharField(max_length=20,blank=True,null=True)
 
     social_facebook = models.URLField(blank=True, null= True)
     social_instagram = models.URLField(blank=True, null= True)
@@ -26,6 +42,7 @@ class SiteSettings(models.Model):
 
 
 class HomePageContent(models.Model):
+    hero_image = models.ImageField(upload_to='homepage-contents/',blank=True,null=True)
     hero_title  = models.CharField(max_length=255)
     hero_subtitle  = models.TextField()
     featured_tours_title  = models.CharField(max_length=255)
@@ -100,4 +117,21 @@ class NewsletterSubscriber(models.Model):
 
     def __str__(self):
         return self.email
+    
+
+class Miscellaneous(models.Model):
+    footer_description = models.TextField(blank=True,null=True)
+
+    def __str__(self):
+        return super().__str__()
+
+
+class Messages(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    message = models.TextField()
+    created_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
 

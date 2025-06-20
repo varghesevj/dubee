@@ -8,7 +8,11 @@
     <!-- ================================
     START BREADCRUMB AREA
 ================================= -->
-<section class="breadcrumb-area bread-bg-9">
+<section class="breadcrumb-area bread-bg"
+{% if breadcrumb_images.about_us_bread_image %}
+        style="background-image: url('{{ breadcrumb_images.about_us_bread_image.url }}');"
+{% endif %}
+>
     <div class="breadcrumb-wrap">
       <div class="container">
         <div class="row">
@@ -268,7 +272,7 @@
 ================================= -->
 {% if teams %}
 <section class="info-area padding-top-100px padding-bottom-60px text-center">
-<div class="container">
+<div class="container" id="team">
   <div class="row">
     <div class="col-lg-12">
       <div class="section-heading">

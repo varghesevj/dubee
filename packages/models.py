@@ -34,6 +34,10 @@ class Package(models.Model):
     is_featured =models.BooleanField(default=False)
     featured_image = models.ImageField(upload_to=package_image_upload_path, null=True, blank=True)
     video = models.URLField(blank=True,null=True)
+    map_embed_code = models.TextField(
+        blank=True,
+        help_text="Paste the full Google Maps iframe embed code here"
+    )
 
     def save(self, *args, **kwargs):
         if not self.slug:

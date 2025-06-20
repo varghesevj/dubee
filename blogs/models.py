@@ -54,6 +54,15 @@ class PostComponent(models.Model):
     class Meta:
         ordering = ['order']
 
+    def save(self, *args, **kwargs):
+        if not self.order:
+            last_component = PostComponent.objects.filter(post=self.post).order_by('-order').first()
+            if last_component:
+                self.order = last_component.order + 1
+            else:
+                self.order = 1
+        super(PostComponent, self).save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.section_type} - {self.order}"
 

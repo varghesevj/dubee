@@ -6,7 +6,7 @@
             {% if package.featured_image %}
             <img src="{{package.featured_image.url}}" alt="Destination-img" />
             {%else%}
-            <img src="{% static 'images/hero-bg3.jpeg' %}" alt="Destination-img" />
+            <img src="{% static 'images/default-images/default-package-image.jpeg' %}" alt="Destination-img" />
             {%endif%}
         </a>
         <!-- <div
@@ -37,12 +37,12 @@
             class="card-price d-flex align-items-center justify-content-between"
         >
             <p>
-            <span class="price__from">From</span>
-            <span class="price__num">${{package.price}}</span>
+            <span class="price__from me-2">From</span>
+            <span class="price__num me-2">{{site_settings.currency}} {{package.price}}</span>
             
             {% if package.old_price%}
             <span class="price__num before-price color-text-3"
-                >${{package.old_price}}</span
+                >{{site_settings.currency}} {{package.old_price}}</span
             >
             {% endif%}
 

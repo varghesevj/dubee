@@ -803,6 +803,8 @@ document.getElementById('newsletter-form').addEventListener('submit', function (
     e.preventDefault();
     const email = document.getElementById('email').value;
 
+
+
     fetch('/subscribe/', {
       method: 'POST',
       headers: {
@@ -813,6 +815,7 @@ document.getElementById('newsletter-form').addEventListener('submit', function (
     })
     .then(response => response.json())
     .then(data => {
+        
     // Set modal message
     document.querySelector("#modalCenter .message").textContent = data.message;
 
@@ -918,3 +921,48 @@ document.getElementById('whatsapp-btn').addEventListener('click', function () {
     bootstrapModal.hide();
   }, 1000); // 1 second delay lets the link launch properly
 });
+
+
+// document.getElementById('send-message-btn').addEventListener('click', function (event) {
+//         event.preventDefault();  // Prevent the default form submission
+
+      
+//         // Your existing code to get form data
+//         let name = document.getElementById('name').value;
+//         let email = document.getElementById('email').value;
+//         let message = document.getElementById('message').value;
+
+      
+//         // Create a FormData object
+//         let formData = new FormData();
+//         formData.append('name', name);
+//         formData.append('email', email);
+//         formData.append('message', message);
+
+//         // Get CSRF token and log it
+//         let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+//         console.log("CSRF Token:", csrfToken);
+
+//         // Send the AJAX request to the server
+//         fetch('send_message/', {
+//             method: 'POST',
+//             body: formData,
+//             headers: {
+//                 'X-CSRFToken': csrfToken  // Attach the CSRF token in the request headers
+//             }
+//         })
+//         .then(response => response.json())
+//         .then(data => {
+//             document.querySelector("#modalCenter .message").textContent = data.message;
+
+   
+//     // Show the modal
+//     const modalElement = document.getElementById("modalCenter");
+//     const bootstrapModal = new bootstrap.Modal(modalElement);
+//     bootstrapModal.show();
+//     })
+//     .catch(error => {
+//       console.error('Error:', error);
+//     });
+// });
+
