@@ -1904,6 +1904,9 @@ body {
   @media (max-width: 575px) {
     .filter-option {
       margin-right: 10px; } }
+  @media only screen and (min-width: 320px) and (max-width: 479px) {
+    .filter-option {
+      margin-bottom: 10px; } }
   @media (max-width: 375px) {
     .filter-option {
       margin-right: 0;
@@ -1921,22 +1924,28 @@ body {
       .filter-option .dropdown-contain .dropdown-menu {
         left: 0 !important; } }
   .filter-option .price-slider-amount .amounts {
+    width: fit-content;
     background-color: transparent;
     text-align: left;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
-    border-radius: 0; }
+    border-radius: 0;
+    opacity: 1 !important; }
 
 /*-========= filter-bar-filter =========-*/
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-  .filter-bar-filter {
-    padding-bottom: 20px; } }
-
-@media (max-width: 375px) {
-  .filter-bar-filter {
-    display: block !important;
-    padding-bottom: 10px; } }
-
+.filter-bar-filter {
+  align-items: center; }
+  @media only screen and (min-width: 480px) and (max-width: 767px) {
+    .filter-bar-filter {
+      padding-bottom: 20px; } }
+  @media (max-width: 375px) {
+    .filter-bar-filter {
+      display: block !important;
+      padding-bottom: 10px; } }
+  @media only screen and (min-width: 320px) and (max-width: 479px) {
+    .filter-bar-filter {
+      flex-direction: column;
+      align-items: flex-start; } }
 @media (max-width: 375px) {
   .bootstrap-select .dropdown-toggle .filter-option {
     margin-bottom: 0; } }

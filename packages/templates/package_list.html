@@ -3,6 +3,10 @@
 {% block title %}{{ category }}{% endblock %}
 
 {% block content %}
+<script>
+    var currencySymbol = "{{ site_settings.currency|escapejs }} " + " ";
+</script>
+
 <!-- <h1>Our Tours</h1>
 <ul>
     <li><a href="">Tour 1</a></li>
@@ -105,10 +109,10 @@ class="card-area section--padding padding-right-100px padding-left-100px"
           <div
             class="filter-bar-filter d-flex flex-wrap  flex-column flex-sm-row  "
           >
-            <div class="filter-option mt-1">
+            <div class="filter-option ">
               <h3 class="title font-size-16">Filter by:</h3>
             </div>
-            <div class="filter-option mt-1">
+            <div class="filter-option ">
               <div class="dropdown dropdown-contain">
                 <a
                   class="dropdown-toggle dropdown-btn dropdown--btn"
@@ -128,7 +132,7 @@ class="card-area section--padding padding-right-100px padding-left-100px"
                         <label for="amount" class="filter__label"
                           >Price:</label
                         >
-                        <input type="text" id="amount" class="amounts" />
+                        <input type="text" id="amount" class="amounts" disabled />
                       </div>
                       <!-- end price-slider-amount -->
                       <div id="slider-range"></div>
@@ -150,124 +154,7 @@ class="card-area section--padding padding-right-100px padding-left-100px"
               </div>
               <!-- end dropdown -->
             </div>
-            <div class="filter-option mt-1">
-              <div class="dropdown dropdown-contain">
-                <a
-                  class="dropdown-toggle dropdown-btn dropdown--btn"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  data-bs-auto-close="outside"
-                >
-                  Group Size
-                </a>
-                <div class="dropdown-menu dropdown-menu-wrap">
-                  <div class="dropdown-item">
-                    <div class="checkbox-wrap">
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="r1"
-                        />
-                        <label for="r1">
-                          <span class="ratings d-flex align-items-center">
-                            <i class="la la-star"></i>
-                            <i class="la la-star"></i>
-                            <i class="la la-star"></i>
-                            <i class="la la-star"></i>
-                            <i class="la la-star"></i>
-                            <span class="color-text-3 font-size-13 ms-1"
-                              >(55.590)</span
-                            >
-                          </span>
-                        </label>
-                      </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="r2"
-                        />
-                        <label for="r2">
-                          <span class="ratings d-flex align-items-center">
-                            <i class="la la-star"></i>
-                            <i class="la la-star"></i>
-                            <i class="la la-star"></i>
-                            <i class="la la-star"></i>
-                            <i class="la la-star-o"></i>
-                            <span class="color-text-3 font-size-13 ms-1"
-                              >(40.590)</span
-                            >
-                          </span>
-                        </label>
-                      </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="r3"
-                        />
-                        <label for="r3">
-                          <span class="ratings d-flex align-items-center">
-                            <i class="la la-star"></i>
-                            <i class="la la-star"></i>
-                            <i class="la la-star"></i>
-                            <i class="la la-star-o"></i>
-                            <i class="la la-star-o"></i>
-                            <span class="color-text-3 font-size-13 ms-1"
-                              >(23.590)</span
-                            >
-                          </span>
-                        </label>
-                      </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="r4"
-                        />
-                        <label for="r4">
-                          <span class="ratings d-flex align-items-center">
-                            <i class="la la-star"></i>
-                            <i class="la la-star"></i>
-                            <i class="la la-star-o"></i>
-                            <i class="la la-star-o"></i>
-                            <i class="la la-star-o"></i>
-                            <span class="color-text-3 font-size-13 ms-1"
-                              >(12.590)</span
-                            >
-                          </span>
-                        </label>
-                      </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="r5"
-                        />
-                        <label for="r5">
-                          <span class="ratings d-flex align-items-center">
-                            <i class="la la-star"></i>
-                            <i class="la la-star-o"></i>
-                            <i class="la la-star-o"></i>
-                            <i class="la la-star-o"></i>
-                            <i class="la la-star-o"></i>
-                            <span class="color-text-3 font-size-13 ms-1"
-                              >(590)</span
-                            >
-                          </span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- end dropdown-item -->
-                </div>
-                <!-- end dropdown-menu -->
-              </div>
-              <!-- end dropdown -->
-            </div>
-            <div class="filter-option mt-1">
+            <div class="filter-option ">
               <div class="dropdown dropdown-contain">
                 <a
                   class="dropdown-toggle dropdown-btn dropdown--btn"
@@ -280,65 +167,27 @@ class="card-area section--padding padding-right-100px padding-left-100px"
                 </a>
                 <div class="dropdown-menu dropdown-menu-wrap">
                   <div class="dropdown-item">
-                    <div class="checkbox-wrap">
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="catChb1"
-                        />
-                        <label for="catChb1"
-                          >Active Adventures Tours</label
+                    <div class="slider-range-wrap">
+                      <div
+                        class="price-slider-amount padding-bottom-20px"
+                      >
+                        <label for="age" class="filter__label"
+                          >Youngest in Group:</label
                         >
+                        <input type="text" id="age" class="amounts" disabled />
                       </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="catChb2"
-                        />
-                        <label for="catChb2">Ecotourism</label>
-                      </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="catChb3"
-                        />
-                        <label for="catChb3">Group Tours</label>
-                      </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="catChb4"
-                        />
-                        <label for="catChb4">Ligula</label>
-                      </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="catChb5"
-                        />
-                        <label for="catChb5">Family Tours</label>
-                      </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="catChb6"
-                        />
-                        <label for="catChb6">City Tour</label>
-                      </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="catChb7"
-                        />
-                        <label for="catChb7">National Park Tours</label>
-                      </div>
+                      <!-- end price-slider-amount -->
+                      <div id="slider-range2"></div>
+                      <!-- end slider-range -->
+                    </div>
+                    <!-- end slider-range-wrap -->
+                    <div class="btn-box pt-4">
+                      <button
+                        class="theme-btn theme-btn-small theme-btn-transparent"
+                        type="button" id="set-min-age"
+                      >
+                        Apply
+                      </button>
                     </div>
                   </div>
                   <!-- end dropdown-item -->
@@ -346,6 +195,59 @@ class="card-area section--padding padding-right-100px padding-left-100px"
                 <!-- end dropdown-menu -->
               </div>
               <!-- end dropdown -->
+            </div>
+            
+            <div class="filter-option ">
+              <div class="dropdown dropdown-contain">
+                <a
+                  class="dropdown-toggle dropdown-btn dropdown--btn"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  data-bs-auto-close="outside"
+                >
+                  Group Size
+                </a>
+                <div class="dropdown-menu dropdown-menu-wrap">
+                  <div class="dropdown-item">
+                    <div class="slider-range-wrap">
+                      <div
+                        class="price-slider-amount padding-bottom-20px"
+                      >
+                        <label for="age" class="filter__label"
+                          >Group Size:</label
+                        >
+                        <input type="text" id="group" class="amounts" disabled />
+                      </div>
+                     
+                      <div id="slider-range-group"></div>
+                     
+                    </div>
+                    
+                    <div class="btn-box pt-4">
+                      <button
+                        class="theme-btn theme-btn-small theme-btn-transparent"
+                        type="button" id="set-min-group"
+                      >
+                        Apply
+                      </button>
+                    </div>
+                  </div>
+                  
+                </div>
+                
+              </div>
+              
+            </div>
+            <div class="filter-option">
+            <div class="btn-box ">
+                      <button
+                        class="theme-btn theme-btn-small theme-btn-transparent"
+                        type="button" id=""
+                      >
+                        Clear Filters
+                      </button>
+            </div>
             </div>
           </div>
           <!-- end filter-bar-filter -->
@@ -366,7 +268,9 @@ class="card-area section--padding padding-right-100px padding-left-100px"
                   </select>
               </div>
           </form> -->
+          
 
+            
           <form method="get" action="" id="sort-form">
               <div class="select-contain select2-container-wrapper">
                   <select class="select-contain-select" name="sort" onchange="this.form.submit()">

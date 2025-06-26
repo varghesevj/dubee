@@ -68,7 +68,11 @@ Author Email:   contact@tecydevs.com
         var rangeSlider = $('#slider-range');
         var rangeSliderAmount = $('#amount');
         var rangeSliderTwo = $('#slider-range2');
-        var rangeSliderAmountTwo = $('#amount2');
+        // var rangeSliderAmountTwo = $('#amount2');
+        var rangeSliderAmountTwo = $('#age');
+        var rangeSliderGroup = $('#slider-range-group');
+        // var rangeSliderAmountTwo = $('#amount2');
+        var rangeSliderGroupTwo = $('#group');
         var dateRangePicker = $('input[name="daterange"]');
         var dateRangePickerTwo = $('input[name="daterange-single"]');
         var select2Menu = $('.select-contain-select');
@@ -502,33 +506,51 @@ Author Email:   contact@tecydevs.com
             $(rangeSlider).slider({
                 range: true,
                 min: 0,
-                max: 1000,
+                max: 10000,
                 values: [ 40, 800 ],
                 slide: function( event, ui ) {
-                    $(rangeSliderAmount).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                    $(rangeSliderAmount).val( currencySymbol + ui.values[ 0 ] + " - "+ currencySymbol + ui.values[ 1 ] );
                 }
             });
         }
-        $(rangeSliderAmount).val( "$" + $(rangeSlider).slider( "values", 0 ) +
-            " - $" + $(rangeSlider).slider( "values", 1 ) );
+        $(rangeSliderAmount).val( currencySymbol + $(rangeSlider).slider( "values", 0 ) +
+            " - "+currencySymbol + $(rangeSlider).slider( "values", 1 ) );
 
-        /*======= ui price range slider 2 ========*/
+        /*======= ui  range slider 2 ==  min age ======*/
         if ($(rangeSliderTwo).length) {
             $(rangeSliderTwo).slider({
-                range: true,
+                range: false,
                 min: 0,
-                max: 1000,
-                values: [ 40, 800 ],
+                max: 100,
+                values: [ 0 ],
                 slide: function( event, ui ) {
-                    $(rangeSliderAmountTwo).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                    $(rangeSliderAmountTwo).val( ui.values[ 0 ] );
                 }
             });
         }
 
-        $(rangeSliderAmountTwo).val( "$" + $(rangeSliderTwo).slider( "values", 0 ) +
-            " - $" + $(rangeSliderTwo).slider( "values", 1 ) );
+        $(rangeSliderAmountTwo).val($(rangeSliderTwo).slider( "values", 0 ));
 
+    /*======= ui  range slider ==  group size ======*/
+        if ($(rangeSliderGroup).length) {
+            $(rangeSliderGroup).slider({
+                range: false,
+                min: 0,
+                max: 100,
+                values: [ 0 ],
+                slide: function( event, ui ) {
+                    $(rangeSliderGroupTwo).val( ui.values[ 0 ] );
+                }
+            });
+        }
 
+        $(rangeSliderGroupTwo).val($(rangeSliderTwo).slider( "values", 0 ));
+
+        $("#set-min-group").click(function() {
+            console.log("Selected :", $("#slider-range-group").slider("values")[0]);
+        });
+
+        
         /*==== Daterangepicker =====*/
         if ($(dateRangePicker).length) {
             $(dateRangePicker).daterangepicker({
@@ -906,7 +928,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //  package booking
-
+  if(document.getElementById('booking-form')){
   document.getElementById('booking-form').addEventListener('submit', function (e) {
     e.preventDefault();
     const form = this;
@@ -960,8 +982,9 @@ Message: ${booking.message}`;
         console.error('Error:', error);
     });
 });
-
+}
 // close modal
+if(document.getElementById('email-btn')){
 document.getElementById('email-btn').addEventListener('click', function () {
   // Optional: delay closing the modal
   setTimeout(() => {
@@ -970,7 +993,8 @@ document.getElementById('email-btn').addEventListener('click', function () {
     bootstrapModal.hide();
   }, 1000); // 1 second delay lets the link launch properly
 });
-
+}
+if(document.getElementById('whatsapp-btn')){
 document.getElementById('whatsapp-btn').addEventListener('click', function () {
   // Optional: delay closing the modal
   setTimeout(() => {
@@ -979,7 +1003,7 @@ document.getElementById('whatsapp-btn').addEventListener('click', function () {
     bootstrapModal.hide();
   }, 1000); // 1 second delay lets the link launch properly
 });
-
+}
 
 // document.getElementById('send-message-btn').addEventListener('click', function (event) {
 //         event.preventDefault();  // Prevent the default form submission

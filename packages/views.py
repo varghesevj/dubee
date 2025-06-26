@@ -65,6 +65,7 @@ def package_detail(request, category, slug):
 def enquiry_view(request,category,slug):
     package = get_object_or_404(Package, category=category, slug=slug)
     success = False
+
     if request.method == 'POST':
         form = EnquiryForm(request.POST)
         if form.is_valid():
@@ -77,7 +78,7 @@ def enquiry_view(request,category,slug):
     else:
         form = EnquiryForm()
 
-    return render(request, 'package_details.html', {'form': form, 'success': success,'package': package })
+    return render(request, 'package_details.html', {'form': form, 'success': success,'package': package , 'category' : category.capitalize()})
 
 
 def submit_booking(request):

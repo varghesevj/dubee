@@ -4,7 +4,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>{% block title %}Dubee{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% sass_src 'scss/style.scss' %}">
     <link
@@ -22,6 +23,11 @@
     <link rel="stylesheet" href="{% static 'css/animated-headline.css' %}" />
     <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}" />
     <link rel="stylesheet" href="{% static 'css/flag-icon.min.css' %}" />
+
+    <script>
+        var currencySymbol = "{{ site_settings.currency|escapejs }} " + " ";
+    </script>
+
 </head>
 <body>
     <!-- start cssload-loader -->

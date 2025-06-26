@@ -201,7 +201,7 @@
                           <h3 class="title font-size-15 font-weight-medium">
                             Group Size
                           </h3>
-                          <span class="font-size-13">{{package.group_size}}</span>
+                          <span class="font-size-13">{{package.group_size_min}} - {{package.group_size_max}} people</span>
                         </div>
                       </div>
                       <!-- end single-tour-feature -->
@@ -613,6 +613,8 @@
                                     name="mobile"
                                     placeholder="Mobile Number"
                                     required
+                                    pattern="^\d+$"
+                                    title="Please enter a valid mobile "
                                   />
                                 </div>
                               </div>
@@ -626,6 +628,8 @@
                                     name="email"
                                     placeholder="Email address"
                                     required
+                                    pattern="^[^@]+@[^@]+\.[^@]+$"
+                                    title="Please enter a valid email address"
                                   />
                                 </div>
                               </div>
@@ -683,6 +687,7 @@
                                 type="text"
                                 name="name"
                                 placeholder="Your name"
+                                required
                               />
                             </div>
                           </div>
@@ -695,6 +700,7 @@
                                 type="email"
                                 name="email"
                                 placeholder="Email address"
+                                required
                               />
                             </div>
                           </div>
@@ -706,6 +712,7 @@
                                 class="message-control form-control"
                                 name="message"
                                 placeholder="Write message"
+                                required
                               ></textarea>
                             </div>
                           </div>

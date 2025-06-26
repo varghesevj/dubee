@@ -12,9 +12,11 @@ urlpatterns = [
     path('tours/',tours_list, name='tours_list'),
     path('activities/', activities_list, name='activities_list'),
     # path('<str:category>/<int:id>/', package_detail, name='package_detail'),  # dynamic detail page
+    path('<str:category>/<slug:slug>/enquiry/', enquiry_view, name='enquiry'),
+    
     path('<str:category>/<slug:slug>/', package_detail, name='package_detail'),
     # path('enquiry/', enquiry_view, name='enquiry'),
-    path('<category>/<slug>/enquiry/', enquiry_view, name='enquiry'),
+    # path('<category>/<slug>/enquiry/', enquiry_view, name='enquiry'),
     path('submit-booking/', submit_booking, name='submit_booking'),
 
 ]

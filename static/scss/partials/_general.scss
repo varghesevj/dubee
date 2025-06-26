@@ -1017,6 +1017,9 @@
   @media #{$extra-device} {
     margin-right: 10px;
   }
+  @media #{$small_mobile}{
+    margin-bottom: 10px;
+  }
   @media #{$small_mobile_five} {
     margin-right: 0;
     margin-bottom: 10px;
@@ -1038,15 +1041,18 @@
   }
   .price-slider-amount {
     .amounts {
+      width: fit-content;
       background-color: transparent;
       text-align: left;
       @include border-radius(0);
+      opacity: 1 !important; 
     }
   }
 }
 
 /*-========= filter-bar-filter =========-*/
 .filter-bar-filter {
+  align-items: center;
   @media #{$large_mobile} {
     padding-bottom: 20px;
   }
@@ -1054,6 +1060,12 @@
     display: block !important;
     padding-bottom: 10px;
   }
+  @media #{$small_mobile}{
+    flex-direction: column; 
+    align-items: flex-start; 
+  }
+    
+  
 }
 .bootstrap-select .dropdown-toggle .filter-option {
   @media #{$small_mobile_five} {
@@ -1530,3 +1542,12 @@
     object-fit: cover;
   }
 }
+
+// .dropdown-item{
+//     z-index: 1000;
+// }
+// @media (max-width: 575px) {
+//     #amount {
+        
+//     }
+// }
