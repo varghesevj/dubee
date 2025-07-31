@@ -1,0 +1,137 @@
+#review-box{
+    .review-wrapper{
+        background-color: $white-grey;
+        padding: 20px;
+    }
+}
+
+.review-box-header-wrapper{
+    background-color: $white;
+    border-radius: 30px;  
+    .section-block{
+        background-color: $white-grey;
+    }
+ 
+}
+
+.rating-overview{
+    .rating-overview-title{
+        padding-bottom: 10px;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-20;
+    }
+    .rating-overview-data{
+        .ratings-value{
+            margin-right: 10px;
+            font-size: $font-size-20;
+            font-weight: $font-weight-bold;
+        }
+        .ratings{
+            margin-right: 10px;
+            font-size: $font-size-30;
+        }
+        display: flex;
+        align-items:baseline;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+   
+}
+.review-box-header-carousel {
+  
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+
+  .item-logo{
+    height: 15px;
+    width: auto;
+    margin-right: 5px;
+
+  }
+
+  .item{
+    padding: 15px;
+    display: flex;
+    // background-color: greenyellow;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .owl-stage {
+    display: flex;
+    align-items: center;
+  }
+
+  .owl-item img {
+    height: 24px !important;  // Set a consistent height for the logos
+    width: 24px !important;
+    margin: 0 5px; // Space between the logos
+    transition: all 0.3s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  .owl-nav, .owl-dots {
+    display: none; // Hide navigation arrows and dots
+  }
+}
+
+.review-box-list-wrapper{
+    .review-button{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .theme-btn{
+        background-color: #00af87 ;
+        border: none;
+        &:hover {
+            background-color: #00af87 ;
+            color: $white;
+        }
+    }
+
+}
+
+
+
+.review-box-list-carousel{
+    margin-top: 20px;
+    .review-card{
+        .ratings{
+            padding: 10px;
+            font-size: $font-size-20;
+        }
+        background-color: $white;
+        border-radius: 10px;
+        // margin: 10px;
+    }
+    .review-data{
+        padding: 10px;
+    }
+    .owl-nav{
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        justify-content: space-between;
+        transform: translateY(-50%);
+    }
+    
+}
+
+.author-content{
+    // background-color: aqua;
+    padding: 10px;
+}
+
+

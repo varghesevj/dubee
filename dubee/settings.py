@@ -55,7 +55,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'dubee.urls'
 
@@ -82,25 +85,25 @@ WSGI_APPLICATION = 'dubee.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'dubee',
-#         'USER': 'dubee_admin',
-#         'PASSWORD': 'admin@dubee',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-
-
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgres://user:password@localhost:5432/dbname',
-        conn_max_age=600,
-        ssl_require=True  # Set True if your DB requires SSL, which is common on managed DBs
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dubee',
+        'USER': 'dubee_admin',
+        'PASSWORD': 'admin@dubee',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
+
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default='postgres://user:password@localhost:5432/dbname',
+#         conn_max_age=600,
+#         ssl_require=True  # Set True if your DB requires SSL, which is common on managed DBs
+#     )
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
