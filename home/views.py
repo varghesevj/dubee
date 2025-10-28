@@ -1,17 +1,28 @@
 from django.shortcuts import render
 from . import models
 from packages.models import Package
+from blogs.models import Blog
 from django.http import JsonResponse
 
 # Create your views here.
 def home_page(request):
     featured_tours = Package.objects.filter(category = 'tour',is_featured=True)[:6]
     featured_activities = Package.objects.filter(category = 'activity',is_featured=True)[:6]
+    
+    # Get latest published blogs for homepage
+    featured_blogs = Blog.objects.filter(status='published').select_related('author').order_by('-date')[:3]
+    
+    # Get homepage content with fallback
+    try:
+        homepage_content = models.HomePageContent.objects.first()
+    except models.HomePageContent.DoesNotExist:
+        homepage_content = None
 
     context = {
-        'homepage_content':models.HomePageContent.objects.first(),
-        'featured_tours':featured_tours,
-        'featured_activities':featured_activities,
+        'homepage_content': homepage_content,
+        'featured_tours': featured_tours,
+        'featured_activities': featured_activities,
+        'featured_blogs': featured_blogs,
         'testimonials': models.Testimonial.objects.filter(is_active=True),
     }
 
