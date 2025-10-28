@@ -104,7 +104,24 @@ WSGI_APPLICATION = 'dubee.wsgi.application'
 # }
 
 
-DATABASES = {
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'dubee',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
+# production render settings
+if os.getenv("DATABASE_URL"):
+    DATABASES = {
+        "default": dj_database_url.config(default=os.environ["DATABASE_URL"])
+    }
+else:
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dubee',
@@ -115,25 +132,7 @@ DATABASES = {
     }
 }
 
-# production rendr
-
-
-
-# if os.getenv("DATABASE_URL"):
-#     DATABASES = {
-#         "default": dj_database_url.config(default=os.environ["DATABASE_URL"])
-#     }
-# else:
-#     DATABASES = {
-#         "default": {
-#             "ENGINE": "django.db.backends.postgresql",
-#             "NAME": os.getenv("POSTGRES_DB"),
-#             "USER": os.getenv("POSTGRES_USER"),
-#             "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-#             "HOST": os.getenv("POSTGRES_HOST"),
-#             "PORT": os.getenv("POSTGRES_PORT", "5432"),
-#         }
-#     }
+    
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.postgresql",
