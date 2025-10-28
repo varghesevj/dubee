@@ -21,4 +21,12 @@ RUN python manage.py collectstatic --noinput || true
 EXPOSE 8000
 
 # Run migrations at container startup, not during build
-CMD python manage.py migrate --noinput && gunicorn dubee.wsgi:application --bind 0.0.0.0:$PORT
+# CMD python manage.py migrate --noinput && gunicorn dubee.wsgi:application --bind 0.0.0.0:$PORT
+# Create Django superuser automatically
+ENV DJANGO_SUPERUSER_USERNAME=admin
+ENV DJANGO_SUPERUSER_EMAIL=admin@example.com
+ENV DJANGO_SUPERUSER_PASSWORD=admin123
+
+CMD python manage.py migrate --noinput \
+    && python manage.py createsuperuser --noinput --username $DJANGO_SUPERUSER_USERNAME --email $DJANGO_SUPERUSER_EMAIL || true \
+    && gunicorn dubee.wsgi:application --bind 0.0.0.0:$PORT
