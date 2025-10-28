@@ -17,5 +17,7 @@ COPY . /app/
 # Collect static files (optional)
 RUN python manage.py collectstatic --noinput || true
 
+RUN python manage.py migrate --noinput
+
 # Command to run the app
 CMD gunicorn dubee.wsgi:application --bind 0.0.0.0:$PORT
