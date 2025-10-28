@@ -2772,7 +2772,9 @@ body {
     line-height: inherit; }
 
 #contact-success-message {
-  display: none; }
+  display: none;
+  padding: 10px;
+  margin-top: 20px; }
 
 .blockquote-item {
   border-left: none;
@@ -3323,6 +3325,10 @@ body {
       justify-content: space-between; } }
   .logo a {
     display: inline-block; }
+  .logo img {
+    width: 134px !important;
+    height: 30px !important;
+    object-fit: contain; }
 
 .logo-2 {
   display: none; }
@@ -9609,6 +9615,17 @@ label {
     -ms-flex-pack: center !important;
     justify-content: center !important;
     text-align: center !important; } }
+
+/*===== Footer logo sizing =======*/
+.footer-logo img {
+  width: 134px !important;
+  height: 30px !important;
+  object-fit: contain; }
+
+.foot__logo img {
+  width: 134px !important;
+  height: 30px !important;
+  object-fit: contain; }
 
 #review-box .review-wrapper {
   background-color: #F5F7FC;

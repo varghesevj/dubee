@@ -43,114 +43,24 @@
               </p>
               <div class="section-block"></div>
               <p class="card-text py-3">{{blog.intro}}</p>
-              <div class="photo-block-gallery">
-                <h3 class="title pb-2">{{blog.components.first.heading}}jj</h3>
-                <p class="card-text pb-4">
-                  Quodsi sanctus pro eu, ne audire scripserit quo. Vel an enim
-                  offendit salutandi, in eos quod omnes epicurei, ex veri
-                  qualisque scriptorem mei.
-                </p>
-                <div class="row">
-                  <div class="col-lg-4 responsive-column">
-                    <div class="photo-block-item">
-                      <a
-                        href="{{blog.components.first.single_image.url}}"
-                        data-fancybox="gallery"
-                        data-caption="Showing image - 01"
-                        data-speed="700"
-                      >
-                        <img src="{% static 'images/hero-bg31.jpg' %}" alt="img" />
-                      </a>
-                    </div>
-                  </div>
-                  <!-- end col-lg-4 -->
-                  <div class="col-lg-4 responsive-column">
-                    <div class="photo-block-item">
-                      <a
-                        href="{% static 'images/hero-bg31.jpg' %}"
-                        data-fancybox="gallery"
-                        data-caption="Showing image - 02"
-                        data-speed="700"
-                      >
-                        <img src="{% static 'images/hero-bg31.jpg' %}" alt="img" />
-                      </a>
-                    </div>
-                  </div>
-                  <!-- end col-lg-4 -->
-                  <div class="col-lg-4 responsive-column">
-                    <div class="photo-block-item">
-                      <a
-                        href="{% static 'images/hero-bg31.jpg' %}"
-                        data-fancybox="gallery"
-                        data-caption="Showing image - 03"
-                        data-speed="700"
-                      >
-                        <img src="{% static 'images/hero-bg31.jpg' %}" alt="img" />
-                      </a>
-                    </div>
-                  </div>
-                  <!-- end col-lg-4 -->
-                  <div class="col-lg-6 responsive-column">
-                    <div class="photo-block-item">
-                      <a
-                        href="{% static 'images/hero-bg31.jpg' %}"
-                        data-fancybox="gallery"
-                        data-caption="Showing image - 04"
-                        data-speed="700"
-                      >
-                        <img src="{% static 'images/hero-bg31.jpg' %}" alt="img" />
-                      </a>
-                    </div>
-                  </div>
-                  <!-- end col-lg-6 -->
-                  <div class="col-lg-6 responsive-column">
-                    <div class="photo-block-item">
-                      <a
-                        href="{% static 'images/hero-bg31.jpg' %}"
-                        data-fancybox="gallery"
-                        data-caption="Showing image - 05"
-                        data-speed="700"
-                      >
-                        <img src="{% static 'images/hero-bg31.jpg' %}" alt="img" />
-                      </a>
-                    </div>
-                  </div>
-                  <!-- end col-lg-6 -->
-                </div>
-                <!-- end row -->
-              </div>
-              <p class="card-text padding-bottom-35px">
-                Duis mollis, est non commodo luctus, nisi erat porttitor
-                ligula, eget lacinia odio sem nec elit. Cras mattis
-                consectetur purus sit amet fermentum. Morbi leo risus, porta
-                ac consectetur ac, vestibulum at eros. Praesent commodo cursus
-                magna, vel scelerisque nisl consectetur et.
-              </p>
               
-              <h3 class="title">Make better travel decisions</h3>
-              <p class="card-text pt-3 pb-4">
-                Duis mollis, est non commodo luctus, nisi erat porttitor
-                ligula, eget lacinia odio sem nec elit. Cras mattis
-                consectetur purus sit amet fermentum. Morbi leo risus, porta
-                ac consectetur ac, vestibulum at eros. Vestibulum id ligula
-                porta felis euismod semper. Donec id elit non mi porta gravida
-                at eget metus. Vestibulum id ligula porta felis euismod semper
-              </p>
-              <div class="section-block"></div>
-              <h3 class="title pt-4">Getting Started</h3>
-              <p class="card-text py-3">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                eaque ipsa quae ab illo inventore incididunt ut labore et
-                dolore magna Boot camps have its supporters and its
-                detractors. Some people do not understand why you should have
-                to spend money on boot camp when you can get the MCSE study
-                materials yourself at a fraction of the camp price.
-              </p>
-              <p class="card-text pb-4">
-                However, who has the willpower to actually sit through a
-                self-imposed MCSE training. who has the willpower to actually
-                sit through a self-imposed
-              </p>
+              <!-- Dynamic blog components -->
+              {% for component in blog.components.all %}
+                {% if component.section_type == 'heading' %}
+                  <h3 class="title">{{ component.heading }}</h3>
+                {% elif component.section_type == 'paragraph' %}
+                  <p class="card-text py-3">{{ component.paragraph }}</p>
+                {% elif component.section_type == 'single_image' %}
+                  <div class="photo-block-item mb-4">
+                    {% if component.single_image %}
+                      <img src="{{ component.single_image.url }}" alt="{{ component.heading|default:'Blog image' }}" class="img-fluid" />
+                    {% endif %}
+                    {% if component.heading %}
+                      <p class="text-center pt-2 font-style-italic">{{ component.heading }}</p>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              {% endfor %}
               <div class="section-block"></div>
               <div
                 class="post-tag-wrap d-flex align-items-center justify-content-between py-4"
@@ -247,12 +157,15 @@
           <div class="related-posts pt-5 pb-4">
             <h3 class="title">Related Posts</h3>
             <div class="row pt-4">
-
-                {% include 'partials/blog_card.html' %}
-                {% include 'partials/blog_card.html' %}
-                {% include 'partials/blog_card.html' %}
-                
-              
+              {% if related_blogs %}
+                {% for related_blog in related_blogs %}
+                  {% include 'partials/blog_card.html' with blog=related_blog %}
+                {% endfor %}
+              {% else %}
+                <div class="col-lg-12">
+                  <p class="text-center">No related posts found.</p>
+                </div>
+              {% endif %}
             </div>
             <!-- end row -->
           </div>

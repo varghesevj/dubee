@@ -35,7 +35,25 @@ class Blog(models.Model):
 
 
     def __str__(self):
-        return "Blog"
+        return self.title
+    
+    @property
+    def short_intro(self):
+        """Return a truncated version of intro for cards"""
+        if len(self.intro) > 150:
+            return self.intro[:150] + "..."
+        return self.intro
+    
+    def get_reading_time(self):
+        """Estimate reading time based on word count"""
+        word_count = len(self.intro.split())
+        for component in self.components.all():
+            if component.paragraph:
+                word_count += len(component.paragraph.split())
+        
+        # Average reading speed is 200 words per minute
+        reading_time = max(1, word_count // 200)
+        return f"{reading_time} Min{'s' if reading_time > 1 else ''} read"
     
 class PostComponent(models.Model):
     component_type = [

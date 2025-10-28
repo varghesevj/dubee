@@ -67,27 +67,47 @@
 <section class="card-area section--padding">
     <div class="container">
       <div class="row">
-        {% include 'partials/blog_card.html' %}
-        {% include 'partials/blog_card.html' %}
-        {% include 'partials/blog_card.html' %}
-        {% include 'partials/blog_card.html' %}
-        {% include 'partials/blog_card.html' %}
-        {% include 'partials/blog_card.html' %}
+        {% if blogs %}
+          {% for blog in blogs %}
+            {% include 'partials/blog_card.html' with blog=blog %}
+          {% endfor %}
+        {% else %}
+          <div class="col-lg-12">
+            <div class="text-center py-5">
+              <h3>No blogs found</h3>
+              <p>There are currently no published blogs available.</p>
+            </div>
+          </div>
+        {% endif %}
       </div>
       <!-- end row -->
+      
+      {% if blogs.has_other_pages %}
       <div class="row">
         <div class="col-lg-12">
           <div class="btn-box mt-3 text-center">
-            <button type="button" class="theme-btn">
-              <i class="la la-refresh me-1"></i>Load More
-            </button>
-            <p class="font-size-13 pt-2">Showing 1 - 6 of 44 Posts</p>
+            {% if blogs.has_previous %}
+              <a href="?page={{ blogs.previous_page_number }}" class="theme-btn me-2">
+                <i class="la la-arrow-left me-1"></i>Previous
+              </a>
+            {% endif %}
+            
+            {% if blogs.has_next %}
+              <a href="?page={{ blogs.next_page_number }}" class="theme-btn">
+                <i class="la la-arrow-right me-1"></i>Next
+              </a>
+            {% endif %}
+            
+            <p class="font-size-13 pt-2">
+              Showing {{ blogs.start_index }} - {{ blogs.end_index }} of {{ total_blogs }} Posts
+            </p>
           </div>
           <!-- end btn-box -->
         </div>
         <!-- end col-lg-12 -->
       </div>
       <!-- end row -->
+      {% endif %}
     </div>
     <!-- end container -->
   </section>

@@ -1,0 +1,75 @@
+/* Logo sizing - all logos should be 134x30 pixels */
+
+/* Header logo styling */
+.logo img,
+.logo a img {
+    width: 134px !important;
+    height: 30px !important;
+    object-fit: contain;
+}
+
+/* Footer logo styling */
+.footer-logo img,
+.foot__logo img {
+    width: 134px !important;
+    height: 30px !important;
+    object-fit: contain;
+}
+
+/* Dashboard logo styling (if exists) */
+.dashboard-nav .logo img,
+.dashboard-nav .logo a img {
+    width: 134px !important;
+    height: 30px !important;
+    object-fit: contain;
+}
+
+/* Any other logo references */
+img[alt="logo"],
+img[alt="Logo"] {
+    width: 134px !important;
+    height: 30px !important;
+    object-fit: contain;
+}
+
+/* Platform logos (Google, Facebook, TripAdvisor) - if you want these to be 134x30 as well */
+.platform-logo {
+    width: 134px !important;
+    height: 30px !important;
+    object-fit: contain;
+}
+
+/* Responsive adjustments for mobile */
+@media only screen and (max-width: 767px) {
+    .logo img,
+    .logo a img,
+    .footer-logo img,
+    .foot__logo img,
+    img[alt="logo"],
+    img[alt="Logo"] {
+        width: 120px !important;
+        height: 27px !important;
+    }
+    
+    .platform-logo {
+        width: 120px !important;
+        height: 27px !important;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    .logo img,
+    .logo a img,
+    .footer-logo img,
+    .foot__logo img,
+    img[alt="logo"],
+    img[alt="Logo"] {
+        width: 100px !important;
+        height: 22px !important;
+    }
+    
+    .platform-logo {
+        width: 100px !important;
+        height: 22px !important;
+    }
+}

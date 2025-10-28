@@ -290,6 +290,13 @@
   a {
     display: inline-block;
   }
+  
+  // Logo image sizing - 134x30 pixels
+  img {
+    width: 134px !important;
+    height: 30px !important;
+    object-fit: contain;
+  }
 }
 
 .logo-2 {

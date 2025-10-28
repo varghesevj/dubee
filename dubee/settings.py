@@ -24,10 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-wjn@6v*e-+-k(su_0_+&vjwe)r=+b=vxd+(#w7nv!e&ca!6#w7'
+# SECRET_KEY = 'django-insecure-wjn@6v*e-+-k(su_0_+&vjwe)r=+b=vxd+(#w7nv!e&ca!6#w7'
+
+SECRET_KEY = os.getenv("SECRET_KEY", "change-me")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ['*']
 
@@ -98,12 +102,24 @@ WSGI_APPLICATION = 'dubee.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgres://user:password@localhost:5432/dbname',
-        conn_max_age=600,
-        ssl_require=True  # Set True if your DB requires SSL, which is common on managed DBs
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dubee',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
+
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default='postgres://user:password@localhost:5432/dbname',
+#         conn_max_age=600,
+#         ssl_require=True  # Set True if your DB requires SSL, which is common on managed DBs
+#     )
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
