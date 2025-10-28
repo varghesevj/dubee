@@ -32,6 +32,7 @@ class PackageAdmin(admin.ModelAdmin):
     search_fields = ('title', 'location')
     list_filter = ('category',)
     prepopulated_fields = {'slug': ('title',)}
+    save_as = True
 
     inlines = [
         ImageGalleryInline,
