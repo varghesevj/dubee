@@ -226,7 +226,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 if os.getenv("CLOUDINARY_URL"):
 
-    MEDIA_URL = '/media/'
+    print("Using Cloudinary for media storage")
     
     DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
@@ -235,6 +235,8 @@ if os.getenv("CLOUDINARY_URL"):
         "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
         "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
     }
+
+    MEDIA_URL = '/'
 else:
     # Local development (store files on disk)
     MEDIA_URL = '/media/'
