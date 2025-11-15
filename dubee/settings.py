@@ -224,21 +224,33 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = BASE_DIR / 'media'
 
-if os.getenv("CLOUDINARY_URL"):
+# if os.getenv("CLOUDINARY_URL"):
  
-    print("Using Cloudinary for media storage abracadabra")
+#     print("Using Cloudinary for media storage abracadabra")
 
-    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+#     DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
-    # CLOUDINARY_STORAGE = {
-    #     "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
-    #     "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
-    #     "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
-    # }
+#     CLOUDINARY_STORAGE = {
+#         "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
+#         "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
+#         "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
+#     }
 
-    # MEDIA_URL = '/'
-else:
-    # Local development (store files on disk)
-    print("Using local storage for media files")
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = BASE_DIR / 'media'
+#     MEDIA_URL = '/'
+# else:
+#     # Local development (store files on disk)
+#     print("Using local storage for media files")
+#     MEDIA_URL = '/media/'
+#     MEDIA_ROOT = BASE_DIR / 'media'
+
+
+
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+CLOUDINARY_STORAGE = {
+        "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
+        "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
+        "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
+    }
+
+MEDIA_URL = '/'
