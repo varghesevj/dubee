@@ -1,17 +1,17 @@
 from django.db import models
 from django.utils.text import slugify
 import os
+import posixpath
 
 
 def package_image_upload_path(instance, filename):
-    return os.path.join('packages', instance.slug, filename)
+    return posixpath.join('packages', instance.slug, filename)
 
 def image_gallery_upload_path(instance,filename):
-    return os.path.join('packages', instance.package.slug,'gallery' ,filename)
-
+    return posixpath.join('packages', instance.package.slug,'gallery' ,filename)
 
 def image_itinerary_upload_path(instance,filename):
-    return os.path.join('packages', instance.package.slug,'itinerary-images' ,filename)
+    return posixpath.join('packages', instance.package.slug,'itinerary-images' ,filename)
 # Create your models here.
 class Package(models.Model):
     category_choices = [
