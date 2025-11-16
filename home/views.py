@@ -4,6 +4,42 @@ from packages.models import Package
 from blogs.models import Blog
 from django.http import JsonResponse
 
+
+
+# cloudinary debug
+
+# home/views.py
+from django.http import HttpResponse
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+
+def cloudinary_test(request):
+    # Show what storage is being used
+    storage_class = default_storage.__class__.__name__
+
+    # Try to upload a dummy file
+    test_file_name = "test_upload.txt"
+    test_content = ContentFile(b"This is a test file for Cloudinary")
+    
+    if default_storage.exists(test_file_name):
+        default_storage.delete(test_file_name)
+    
+    file_name = default_storage.save(test_file_name, test_content)
+    file_url = default_storage.url(file_name)
+
+    response_text = (
+        f"Storage class: {storage_class}\n"
+        f"File saved as: {file_name}\n"
+        f"File URL: {file_url}\n"
+    )
+
+    return HttpResponse(response_text, content_type="text/plain")
+
+
+
+
+
+
 # Create your views here.
 def home_page(request):
     featured_tours = Package.objects.filter(category = 'tour',is_featured=True)[:6]
