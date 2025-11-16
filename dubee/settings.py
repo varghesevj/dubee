@@ -56,7 +56,14 @@ print("CLOUDINARY_URL =", os.getenv("CLOUDINARY_URL"))
 print("Default storage =", DEFAULT_FILE_STORAGE)
 print("---- END CLOUDINARY CHECK ----")
 
-
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 
 # Application definition
