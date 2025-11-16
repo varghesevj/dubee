@@ -56,8 +56,8 @@ INSTALLED_APPS = [
     'blogs',
 
     # cloudinary
-    'cloudinary',
-    'cloudinary_storage',
+    # 'cloudinary',
+    # 'cloudinary_storage',
 ]
 
 print("\nCLOUDINARY FINAL CHECK →")
