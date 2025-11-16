@@ -38,24 +38,7 @@ DEBUG = os.getenv("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = ["*", ".onrender.com"]
 
-# Cloudinary configuration check 
 
-print("CLOUDINARY CHECK →")
-print("   CLOUDINARY_URL =", os.getenv("CLOUDINARY_URL"))
-print("   CLOUDINARY_CLOUD_NAME =", os.getenv("CLOUDINARY_CLOUD_NAME"))
-print("   CLOUDINARY_API_KEY =", os.getenv("CLOUDINARY_API_KEY"))
-print("   CLOUDINARY_API_SECRET =", os.getenv("CLOUDINARY_API_SECRET"))
-print("---- END CLOUDINARY CHECK ----")
-
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
-
-CLOUDINARY_STORAGE = {
-        "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
-        "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
-        "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
-    }
-
-MEDIA_URL = '/'
 
 
 # Application definition
@@ -76,6 +59,31 @@ INSTALLED_APPS = [
     'cloudinary',
     'cloudinary_storage',
 ]
+
+print("\nCLOUDINARY FINAL CHECK →")
+print("CLOUDINARY_URL =", os.getenv("CLOUDINARY_URL"))
+
+USE_CLOUDINARY = bool(os.getenv("CLOUDINARY_URL"))
+
+if USE_CLOUDINARY:
+    print("→ Using Cloudinary storage")
+
+    INSTALLED_APPS += [
+        "cloudinary",
+        "cloudinary_storage",
+    ]
+
+    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+    MEDIA_URL = "/media/"
+else:
+    print("→ Using LOCAL storage")
+
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = BASE_DIR / "media"
+
+print("Default storage = ", DEFAULT_FILE_STORAGE if USE_CLOUDINARY else "LOCAL FS")
+print("---- END FINAL CHECK ----\n")
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
