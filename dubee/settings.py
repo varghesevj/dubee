@@ -38,6 +38,23 @@ DEBUG = os.getenv("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = ["*", ".onrender.com"]
 
+# Make sure CLOUDINARY_URL is set on Render environment
+# Example: cloudinary://API_KEY:API_SECRET@CLOUD_NAME
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+MEDIA_URL = "/"
+
+# Optional: manual settings if you prefer
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
+}
+
+print("CLOUDINARY CHECK →")
+print("CLOUDINARY_URL =", os.getenv("CLOUDINARY_URL"))
+print("Default storage =", DEFAULT_FILE_STORAGE)
+print("---- END CLOUDINARY CHECK ----")
+
 
 
 
@@ -56,33 +73,9 @@ INSTALLED_APPS = [
     'blogs',
 
     # cloudinary
-    # 'cloudinary',
-    # 'cloudinary_storage',
+    'cloudinary',
+    'cloudinary_storage',
 ]
-
-print("\nCLOUDINARY FINAL CHECK →")
-print("CLOUDINARY_URL =", os.getenv("CLOUDINARY_URL"))
-
-USE_CLOUDINARY = bool(os.getenv("CLOUDINARY_URL"))
-
-if USE_CLOUDINARY:
-    print("→ Using Cloudinary storage")
-
-    INSTALLED_APPS += [
-        "cloudinary",
-        "cloudinary_storage",
-    ]
-
-    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
-    MEDIA_URL = "/media/"
-else:
-    print("→ Using LOCAL storage")
-
-    MEDIA_URL = "/media/"
-    MEDIA_ROOT = BASE_DIR / "media"
-
-print("Default storage = ", DEFAULT_FILE_STORAGE if USE_CLOUDINARY else "LOCAL FS")
-print("---- END FINAL CHECK ----\n")
 
 
 MIDDLEWARE = [
