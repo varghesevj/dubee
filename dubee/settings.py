@@ -42,6 +42,7 @@ ALLOWED_HOSTS = ["*", ".onrender.com"]
 # Example: cloudinary://API_KEY:API_SECRET@CLOUD_NAME
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 MEDIA_URL = "/"
+MEDIA_ROOT = None
 
 # Optional: manual settings if you prefer
 CLOUDINARY_STORAGE = {
