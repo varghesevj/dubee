@@ -38,6 +38,14 @@ DEBUG = os.getenv("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = ["*", ".onrender.com"]
 
+# Cloudinary configuration check 
+
+print("CLOUDINARY CHECK →")
+print("   CLOUDINARY_URL =", os.getenv("CLOUDINARY_URL"))
+print("   CLOUDINARY_CLOUD_NAME =", os.getenv("CLOUDINARY_CLOUD_NAME"))
+print("   CLOUDINARY_API_KEY =", os.getenv("CLOUDINARY_API_KEY"))
+print("   CLOUDINARY_API_SECRET =", os.getenv("CLOUDINARY_API_SECRET"))
+print("---- END CLOUDINARY CHECK ----")
 
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
